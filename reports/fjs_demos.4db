@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Schema id="{e3ac258a-0000-4000-89a4-c48ffe332b34}" version="1.5">
+  <AGSettings version="1.1">
+    <DynamicProperties version="2">
+      <DynamicProperty description="Associated widget" editorInfo="contains:ButtonEdit|CheckBox|ComboBox|DateEdit|Edit|FFImage|FFLabel|Field|ProgressBar|RadioGroup|Slider|SpinEdit|TextEdit|TimeEdit" initialValue="Edit" isDefaultInherited="false" isHidden="false" label="Widget" name="widget" readOnly="false" type="ENUM"/>
+      <DynamicProperty description="Associated label when generating form" initialValue="" isDefaultInherited="false" isHidden="false" label="Label" name="label" readOnly="false" type="TEXT"/>
+      <DynamicPropertyGroup collapsed="false" description="Formfied properties" label="Formfield" name="formfieldGroup" properties="label;widget"/>
+    </DynamicProperties>
+    <NodeInfos version="1">
+      <NodeInfo mimeType="db/column" properties="widget;label"/>
+    </NodeInfos>
+  </AGSettings>
+  <ExtractionSettings>
+    <ExtractionOptions casens="LowerCase" cvmeth="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" ignerr="true" systab="false" type="IBM Informix"/>
+  </ExtractionSettings>
+  <Table name="addresses" status="U" uuid="db/table2">
+    <Column fglLength="4" fglType="6" fglTypeString="SERIAL" name="rec_key" nativeTypeString="SERIAL" notNull="true" order="1" status="U" uuid="db/column2"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="line1" nativeTypeString="VARCHAR(40)" notNull="false" order="2" status="U" uuid="db/column4"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="line2" nativeTypeString="VARCHAR(40)" notNull="false" order="3" status="U" uuid="db/column6"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="line3" nativeTypeString="VARCHAR(40)" notNull="false" order="4" status="U" uuid="db/column8"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="line4" nativeTypeString="VARCHAR(40)" notNull="false" order="5" status="U" uuid="db/column10"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="line5" nativeTypeString="VARCHAR(40)" notNull="false" order="6" status="U" uuid="db/column12"/>
+    <Column fglLength="264" fglType="13" fglTypeString="VARCHAR(8,1)" name="postal_code" nativeTypeString="VARCHAR(8)" notNull="false" order="7" status="U" uuid="db/column14"/>
+    <Column fglLength="3" fglType="0" fglTypeString="CHAR(3)" name="country_code" nativeTypeString="CHAR(3)" notNull="false" order="8" status="U" uuid="db/column16"/>
+    <Index name="_203_123" primary="true" status="M" unique="true" uuid="db/index2">
+      <Column name="rec_key" order="1"/>
+    </Index>
+    <Index name="addr_idx" primary="false" status="U" unique="false" uuid="db/index4">
+      <Column name="line2" order="1"/>
+      <Column name="line3" order="2"/>
+    </Index>
+  </Table>
+  <Table name="countries" status="U" uuid="db/table4">
+    <Column fglLength="3" fglType="0" fglTypeString="CHAR(3)" name="country_code" nativeTypeString="CHAR(3)" notNull="false" order="1" status="U" uuid="db/column18"/>
+    <Column fglLength="40" fglType="0" fglTypeString="CHAR(40)" name="country_name" nativeTypeString="CHAR(40)" notNull="false" order="2" status="U" uuid="db/column20"/>
+    <Index name="_202_122" primary="true" status="M" unique="true" uuid="db/index6">
+      <Column name="country_code" order="1"/>
+    </Index>
+  </Table>
+  <Table name="customer" status="U" uuid="db/table6">
+    <Column fglLength="8" fglType="0" fglTypeString="CHAR(8)" name="customer_code" nativeTypeString="CHAR(8)" notNull="false" order="1" status="U" uuid="db/column22"/>
+    <Column fglLength="286" fglType="13" fglTypeString="VARCHAR(30,1)" name="customer_name" nativeTypeString="VARCHAR(30)" notNull="false" order="2" status="U" uuid="db/column24"/>
+    <Column fglLength="286" fglType="13" fglTypeString="VARCHAR(30,1)" name="contact_name" nativeTypeString="VARCHAR(30)" notNull="false" order="3" status="U" uuid="db/column26"/>
+    <Column fglLength="356" fglType="13" fglTypeString="VARCHAR(100,1)" name="email" nativeTypeString="VARCHAR(100)" notNull="false" order="4" status="U" uuid="db/column28"/>
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="web_passwd" nativeTypeString="CHAR(10)" notNull="false" order="5" status="U" uuid="db/column30"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="del_addr" nativeTypeString="INTEGER" notNull="false" order="6" status="U" uuid="db/column32"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="inv_addr" nativeTypeString="INTEGER" notNull="false" order="7" status="U" uuid="db/column34"/>
+    <Column fglLength="2" fglType="0" fglTypeString="CHAR(2)" name="disc_code" nativeTypeString="CHAR(2)" notNull="false" order="8" status="U" uuid="db/column36"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="credit_limit" nativeTypeString="INTEGER" notNull="false" order="9" status="U" uuid="db/column38"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="total_invoices" nativeTypeString="DECIMAL(12,2)" notNull="false" order="10" status="U" uuid="db/column40"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="outstanding_amount" nativeTypeString="DECIMAL(12,2)" notNull="false" order="11" status="U" uuid="db/column42"/>
+    <Index name="_201_121" primary="true" status="M" unique="true" uuid="db/index8">
+      <Column name="customer_code" order="1"/>
+    </Index>
+  </Table>
+  <Table name="disc" status="U" uuid="db/table8">
+    <Column fglLength="2" fglType="0" fglTypeString="CHAR(2)" name="stock_disc" nativeTypeString="CHAR(2)" notNull="false" order="1" status="U" uuid="db/column44"/>
+    <Column fglLength="2" fglType="0" fglTypeString="CHAR(2)" name="customer_disc" nativeTypeString="CHAR(2)" notNull="false" order="2" status="U" uuid="db/column46"/>
+    <Column fglLength="1282" fglType="5" fglTypeString="DECIMAL(5,2)" name="disc_percent" nativeTypeString="DECIMAL(5,2)" notNull="false" order="3" status="U" uuid="db/column48"/>
+    <Index name="_211_132" primary="true" status="M" unique="true" uuid="db/index10">
+      <Column name="customer_disc" order="1"/>
+      <Column name="stock_disc" order="2"/>
+    </Index>
+  </Table>
+  <Table name="mytab1_v" status="U" uuid="db/table10">
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="key" nativeTypeString="INTEGER" notNull="false" order="1" status="U" uuid="db/column50"/>
+    <Column fglLength="40" fglType="0" fglTypeString="CHAR(40)" name="txt" nativeTypeString="CHAR(40)" notNull="false" order="2" status="U" uuid="db/column52"/>
+  </Table>
+  <Table name="mytab2_v" status="U" uuid="db/table12">
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="key" nativeTypeString="INTEGER" notNull="false" order="1" status="U" uuid="db/column54"/>
+    <Column fglLength="40" fglType="0" fglTypeString="CHAR(40)" name="txt" nativeTypeString="CHAR(40)" notNull="false" order="2" status="U" uuid="db/column56"/>
+  </Table>
+  <Table name="mytab_v" status="U" uuid="db/table14">
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="key" nativeTypeString="INTEGER" notNull="false" order="1" status="U" uuid="db/column58"/>
+    <Column fglLength="40" fglType="0" fglTypeString="CHAR(40)" name="txt" nativeTypeString="CHAR(40)" notNull="false" order="2" status="U" uuid="db/column60"/>
+  </Table>
+  <Table name="njm_dt" status="U" uuid="db/table16">
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="key" nativeTypeString="INTEGER" notNull="false" order="1" status="U" uuid="db/column62"/>
+    <Column fglLength="3594" fglType="10" fglTypeString="DATETIME YEAR TO SECOND" name="dt" nativeTypeString="DATETIME YEAR TO SECOND" notNull="false" order="2" status="U" uuid="db/column64"/>
+  </Table>
+  <Table name="ord_detail" status="U" uuid="db/table18">
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="order_number" nativeTypeString="INTEGER" notNull="false" order="1" status="U" uuid="db/column66"/>
+    <Column fglLength="2" fglType="1" fglTypeString="SMALLINT" name="line_number" nativeTypeString="SMALLINT" notNull="false" order="2" status="U" uuid="db/column68"/>
+    <Column fglLength="264" fglType="13" fglTypeString="VARCHAR(8,1)" name="stock_code" nativeTypeString="VARCHAR(8)" notNull="false" order="3" status="U" uuid="db/column70"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="pack_flag" nativeTypeString="CHAR(1)" notNull="false" order="4" status="U" uuid="db/column72"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="price" nativeTypeString="DECIMAL(12,2)" notNull="false" order="5" status="U" uuid="db/column74"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="quantity" nativeTypeString="INTEGER" notNull="false" order="6" status="U" uuid="db/column76"/>
+    <Column fglLength="1282" fglType="5" fglTypeString="DECIMAL(5,2)" name="disc_percent" nativeTypeString="DECIMAL(5,2)" notNull="false" order="7" status="U" uuid="db/column78"/>
+    <Column fglLength="2563" fglType="5" fglTypeString="DECIMAL(10,3)" name="disc_value" nativeTypeString="DECIMAL(10,3)" notNull="false" order="8" status="U" uuid="db/column80"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="tax_code" nativeTypeString="CHAR(1)" notNull="false" order="9" status="U" uuid="db/column82"/>
+    <Column fglLength="1282" fglType="5" fglTypeString="DECIMAL(5,2)" name="tax_rate" nativeTypeString="DECIMAL(5,2)" notNull="false" order="10" status="U" uuid="db/column84"/>
+    <Column fglLength="2562" fglType="5" fglTypeString="DECIMAL(10,2)" name="tax_value" nativeTypeString="DECIMAL(10,2)" notNull="false" order="11" status="U" uuid="db/column86"/>
+    <Column fglLength="2562" fglType="5" fglTypeString="DECIMAL(10,2)" name="nett_value" nativeTypeString="DECIMAL(10,2)" notNull="false" order="12" status="U" uuid="db/column88"/>
+    <Column fglLength="2562" fglType="5" fglTypeString="DECIMAL(10,2)" name="gross_value" nativeTypeString="DECIMAL(10,2)" notNull="false" order="13" status="U" uuid="db/column90"/>
+    <Index name="_210_130" primary="true" status="M" unique="true" uuid="db/index12">
+      <Column name="line_number" order="1"/>
+      <Column name="order_number" order="2"/>
+    </Index>
+    <Index name="_210_131" primary="false" status="M" unique="false" uuid="db/index14">
+      <Column name="order_number" order="1"/>
+    </Index>
+  </Table>
+  <Table name="ord_head" status="U" uuid="db/table20">
+    <Column fglLength="4" fglType="6" fglTypeString="SERIAL" name="order_number" nativeTypeString="SERIAL" notNull="true" order="1" status="U" uuid="db/column92"/>
+    <Column fglLength="3594" fglType="10" fglTypeString="DATETIME YEAR TO SECOND" name="order_datetime" nativeTypeString="DATETIME YEAR TO SECOND" notNull="false" order="2" status="U" uuid="db/column94"/>
+    <Column fglLength="4" fglType="7" fglTypeString="DATE" name="order_date" nativeTypeString="DATE" notNull="false" order="3" status="U" uuid="db/column96"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="order_ref" nativeTypeString="VARCHAR(40)" notNull="false" order="4" status="U" uuid="db/column98"/>
+    <Column fglLength="4" fglType="7" fglTypeString="DATE" name="req_del_date" nativeTypeString="DATE" notNull="false" order="5" status="U" uuid="db/column100"/>
+    <Column fglLength="264" fglType="13" fglTypeString="VARCHAR(8,1)" name="customer_code" nativeTypeString="VARCHAR(8)" notNull="false" order="6" status="U" uuid="db/column102"/>
+    <Column fglLength="286" fglType="13" fglTypeString="VARCHAR(30,1)" name="customer_name" nativeTypeString="VARCHAR(30)" notNull="false" order="7" status="U" uuid="db/column104"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="del_address1" nativeTypeString="VARCHAR(40)" notNull="false" order="8" status="U" uuid="db/column106"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="del_address2" nativeTypeString="VARCHAR(40)" notNull="false" order="9" status="U" uuid="db/column108"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="del_address3" nativeTypeString="VARCHAR(40)" notNull="false" order="10" status="U" uuid="db/column110"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="del_address4" nativeTypeString="VARCHAR(40)" notNull="false" order="11" status="U" uuid="db/column112"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="del_address5" nativeTypeString="VARCHAR(40)" notNull="false" order="12" status="U" uuid="db/column114"/>
+    <Column fglLength="264" fglType="13" fglTypeString="VARCHAR(8,1)" name="del_postcode" nativeTypeString="VARCHAR(8)" notNull="false" order="13" status="U" uuid="db/column116"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="inv_address1" nativeTypeString="VARCHAR(40)" notNull="false" order="14" status="U" uuid="db/column118"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="inv_address2" nativeTypeString="VARCHAR(40)" notNull="false" order="15" status="U" uuid="db/column120"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="inv_address3" nativeTypeString="VARCHAR(40)" notNull="false" order="16" status="U" uuid="db/column122"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="inv_address4" nativeTypeString="VARCHAR(40)" notNull="false" order="17" status="U" uuid="db/column124"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="inv_address5" nativeTypeString="VARCHAR(40)" notNull="false" order="18" status="U" uuid="db/column126"/>
+    <Column fglLength="264" fglType="13" fglTypeString="VARCHAR(8,1)" name="inv_postcode" nativeTypeString="VARCHAR(8)" notNull="false" order="19" status="U" uuid="db/column128"/>
+    <Column fglLength="8" fglType="0" fglTypeString="CHAR(8)" name="username" nativeTypeString="CHAR(8)" notNull="false" order="20" status="U" uuid="db/column130"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="items" nativeTypeString="INTEGER" notNull="false" order="21" status="U" uuid="db/column132"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="total_qty" nativeTypeString="INTEGER" notNull="false" order="22" status="U" uuid="db/column134"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="total_nett" nativeTypeString="DECIMAL(12,2)" notNull="false" order="23" status="U" uuid="db/column136"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="total_tax" nativeTypeString="DECIMAL(12,2)" notNull="false" order="24" status="U" uuid="db/column138"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="total_gross" nativeTypeString="DECIMAL(12,2)" notNull="false" order="25" status="U" uuid="db/column140"/>
+    <Column fglLength="3075" fglType="5" fglTypeString="DECIMAL(12,3)" name="total_disc" nativeTypeString="DECIMAL(12,3)" notNull="false" order="26" status="U" uuid="db/column142"/>
+    <Index name="_208_128" primary="true" status="M" unique="true" uuid="db/index16">
+      <Column name="order_number" order="1"/>
+    </Index>
+  </Table>
+  <Table name="ord_payment" status="U" uuid="db/table22">
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="order_number" nativeTypeString="INTEGER" notNull="false" order="1" status="U" uuid="db/column144"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="payment_type" nativeTypeString="CHAR(1)" notNull="false" order="2" status="U" uuid="db/column146"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="del_type" nativeTypeString="CHAR(1)" notNull="false" order="3" status="U" uuid="db/column148"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="card_type" nativeTypeString="CHAR(1)" notNull="false" order="4" status="U" uuid="db/column150"/>
+    <Column fglLength="20" fglType="0" fglTypeString="CHAR(20)" name="card_no" nativeTypeString="CHAR(20)" notNull="false" order="5" status="U" uuid="db/column152"/>
+    <Column fglLength="2" fglType="1" fglTypeString="SMALLINT" name="expires_m" nativeTypeString="SMALLINT" notNull="false" order="6" status="U" uuid="db/column154"/>
+    <Column fglLength="2" fglType="1" fglTypeString="SMALLINT" name="expires_y" nativeTypeString="SMALLINT" notNull="false" order="7" status="U" uuid="db/column156"/>
+    <Column fglLength="2" fglType="1" fglTypeString="SMALLINT" name="issue_no" nativeTypeString="SMALLINT" notNull="false" order="8" status="U" uuid="db/column158"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="payment_amount" nativeTypeString="DECIMAL(12,2)" notNull="false" order="9" status="U" uuid="db/column160"/>
+    <Column fglLength="1538" fglType="5" fglTypeString="DECIMAL(6,2)" name="del_amount" nativeTypeString="DECIMAL(6,2)" notNull="false" order="10" status="U" uuid="db/column162"/>
+  </Table>
+  <Table name="pack_items" status="U" uuid="db/table24">
+    <Column fglLength="8" fglType="0" fglTypeString="CHAR(8)" name="pack_code" nativeTypeString="CHAR(8)" notNull="false" order="1" status="U" uuid="db/column164"/>
+    <Column fglLength="8" fglType="0" fglTypeString="CHAR(8)" name="stock_code" nativeTypeString="CHAR(8)" notNull="false" order="2" status="U" uuid="db/column166"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="qty" nativeTypeString="INTEGER" notNull="false" order="3" status="U" uuid="db/column168"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="price" nativeTypeString="DECIMAL(12,2)" notNull="false" order="4" status="U" uuid="db/column170"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="cost" nativeTypeString="DECIMAL(12,2)" notNull="false" order="5" status="U" uuid="db/column172"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="tax_code" nativeTypeString="CHAR(1)" notNull="false" order="6" status="U" uuid="db/column174"/>
+    <Column fglLength="2" fglType="0" fglTypeString="CHAR(2)" name="disc_code" nativeTypeString="CHAR(2)" notNull="false" order="7" status="U" uuid="db/column176"/>
+  </Table>
+  <Table name="saeweblogon" status="U" uuid="db/table26">
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="account_id" nativeTypeString="CHAR(10)" notNull="false" order="1" status="U" uuid="db/column178"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="account_number" nativeTypeString="INTEGER" notNull="false" order="2" status="U" uuid="db/column180"/>
+  </Table>
+  <Table name="stock" status="U" uuid="db/table28">
+    <Column fglLength="8" fglType="0" fglTypeString="CHAR(8)" name="stock_code" nativeTypeString="CHAR(8)" notNull="false" order="1" status="U" uuid="db/column182"/>
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="stock_cat" nativeTypeString="CHAR(10)" notNull="false" order="2" status="U" uuid="db/column184"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="pack_flag" nativeTypeString="CHAR(1)" notNull="false" order="3" status="U" uuid="db/column186"/>
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="supp_code" nativeTypeString="CHAR(10)" notNull="false" order="4" status="U" uuid="db/column188"/>
+    <Column fglLength="13" fglType="0" fglTypeString="CHAR(13)" name="barcode" nativeTypeString="CHAR(13)" notNull="false" order="5" status="U" uuid="db/column190"/>
+    <Column fglLength="30" fglType="0" fglTypeString="CHAR(30)" name="description" nativeTypeString="CHAR(30)" notNull="false" order="6" status="U" uuid="db/column192"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="price" nativeTypeString="DECIMAL(12,2)" notNull="false" order="7" status="U" uuid="db/column194"/>
+    <Column fglLength="3074" fglType="5" fglTypeString="DECIMAL(12,2)" name="cost" nativeTypeString="DECIMAL(12,2)" notNull="false" order="8" status="U" uuid="db/column196"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="tax_code" nativeTypeString="CHAR(1)" notNull="false" order="9" status="U" uuid="db/column198"/>
+    <Column fglLength="2" fglType="0" fglTypeString="CHAR(2)" name="disc_code" nativeTypeString="CHAR(2)" notNull="false" order="10" status="U" uuid="db/column200"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="physical_stock" nativeTypeString="INTEGER" notNull="false" order="11" status="U" uuid="db/column202"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="allocated_stock" nativeTypeString="INTEGER" notNull="false" order="12" status="U" uuid="db/column204"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="free_stock" nativeTypeString="INTEGER" notNull="false" order="13" status="U" uuid="db/column206"/>
+    <Column fglLength="356" fglType="13" fglTypeString="VARCHAR(100,1)" name="long_desc" nativeTypeString="VARCHAR(100)" notNull="false" order="14" status="U" uuid="db/column208"/>
+    <Column fglLength="356" fglType="13" fglTypeString="VARCHAR(100,1)" name="img_url" nativeTypeString="VARCHAR(100)" notNull="false" order="15" status="U" uuid="db/column210"/>
+    <Index name="_204_125" primary="true" status="M" unique="true" uuid="db/index18">
+      <Column name="stock_code" order="1"/>
+    </Index>
+    <Index name="_204_126" primary="false" status="M" unique="true" uuid="db/index20">
+      <Column name="barcode" order="1"/>
+    </Index>
+    <Index name="stk_idx" primary="false" status="U" unique="false" uuid="db/index22">
+      <Column name="description" order="1"/>
+    </Index>
+  </Table>
+  <Table name="stock_cat" status="U" uuid="db/table30">
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="catid" nativeTypeString="CHAR(10)" notNull="false" order="1" status="U" uuid="db/column212"/>
+    <Column fglLength="80" fglType="0" fglTypeString="CHAR(80)" name="cat_name" nativeTypeString="CHAR(80)" notNull="false" order="2" status="U" uuid="db/column214"/>
+  </Table>
+  <Table name="supplier" status="U" uuid="db/table32">
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="supp_code" nativeTypeString="CHAR(10)" notNull="false" order="1" status="U" uuid="db/column216"/>
+    <Column fglLength="80" fglType="0" fglTypeString="CHAR(80)" name="supp_name" nativeTypeString="CHAR(80)" notNull="false" order="2" status="U" uuid="db/column218"/>
+    <Column fglLength="2" fglType="0" fglTypeString="CHAR(2)" name="disc_code" nativeTypeString="CHAR(2)" notNull="false" order="3" status="U" uuid="db/column220"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="addr_line1" nativeTypeString="VARCHAR(40)" notNull="false" order="4" status="U" uuid="db/column222"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="addr_line2" nativeTypeString="VARCHAR(40)" notNull="false" order="5" status="U" uuid="db/column224"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="addr_line3" nativeTypeString="VARCHAR(40)" notNull="false" order="6" status="U" uuid="db/column226"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="addr_line4" nativeTypeString="VARCHAR(40)" notNull="false" order="7" status="U" uuid="db/column228"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="addr_line5" nativeTypeString="VARCHAR(40)" notNull="false" order="8" status="U" uuid="db/column230"/>
+    <Column fglLength="264" fglType="13" fglTypeString="VARCHAR(8,1)" name="postal_code" nativeTypeString="VARCHAR(8)" notNull="false" order="9" status="U" uuid="db/column232"/>
+    <Column fglLength="20" fglType="0" fglTypeString="CHAR(20)" name="tel" nativeTypeString="CHAR(20)" notNull="false" order="10" status="U" uuid="db/column234"/>
+    <Column fglLength="316" fglType="13" fglTypeString="VARCHAR(60,1)" name="email" nativeTypeString="VARCHAR(60)" notNull="false" order="11" status="U" uuid="db/column236"/>
+  </Table>
+  <Table name="sys_menu_roles" status="U" uuid="db/table34">
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="menu_key" nativeTypeString="INTEGER" notNull="false" order="1" status="U" uuid="db/column238"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="role_key" nativeTypeString="INTEGER" notNull="false" order="2" status="U" uuid="db/column240"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="active" nativeTypeString="CHAR(1)" notNull="false" order="3" status="U" uuid="db/column242"/>
+    <Index name="_216_140" primary="true" status="M" unique="true" uuid="db/index24">
+      <Column name="menu_key" order="1"/>
+      <Column name="role_key" order="2"/>
+    </Index>
+  </Table>
+  <Table name="sys_menus" status="U" uuid="db/table36">
+    <Column fglLength="4" fglType="6" fglTypeString="SERIAL" name="menu_key" nativeTypeString="SERIAL" notNull="true" order="1" status="U" uuid="db/column244"/>
+    <Column fglLength="262" fglType="13" fglTypeString="VARCHAR(6,1)" name="m_id" nativeTypeString="VARCHAR(6)" notNull="false" order="2" status="U" uuid="db/column246"/>
+    <Column fglLength="262" fglType="13" fglTypeString="VARCHAR(6,1)" name="m_pid" nativeTypeString="VARCHAR(6)" notNull="false" order="3" status="U" uuid="db/column248"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="m_type" nativeTypeString="CHAR(1)" notNull="false" order="4" status="U" uuid="db/column250"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="m_text" nativeTypeString="VARCHAR(40)" notNull="false" order="5" status="U" uuid="db/column252"/>
+    <Column fglLength="336" fglType="13" fglTypeString="VARCHAR(80,1)" name="m_item" nativeTypeString="VARCHAR(80)" notNull="false" order="6" status="U" uuid="db/column254"/>
+    <Column fglLength="264" fglType="13" fglTypeString="VARCHAR(8,1)" name="m_passw" nativeTypeString="VARCHAR(8)" notNull="false" order="7" status="U" uuid="db/column256"/>
+    <Index name="_215_138" primary="true" status="M" unique="true" uuid="db/index26">
+      <Column name="menu_key" order="1"/>
+    </Index>
+  </Table>
+  <Table name="sys_roles" status="U" uuid="db/table38">
+    <Column fglLength="4" fglType="6" fglTypeString="SERIAL" name="role_key" nativeTypeString="SERIAL" notNull="true" order="1" status="U" uuid="db/column258"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="role_type" nativeTypeString="CHAR(1)" notNull="false" order="2" status="U" uuid="db/column260"/>
+    <Column fglLength="286" fglType="13" fglTypeString="VARCHAR(30,1)" name="role_name" nativeTypeString="VARCHAR(30)" notNull="false" order="3" status="U" uuid="db/column262"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="active" nativeTypeString="CHAR(1)" notNull="false" order="4" status="U" uuid="db/column264"/>
+    <Index name="_214_136" primary="true" status="M" unique="true" uuid="db/index28">
+      <Column name="role_key" order="1"/>
+    </Index>
+  </Table>
+  <Table name="sys_user_roles" status="U" uuid="db/table40">
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="user_key" nativeTypeString="INTEGER" notNull="false" order="1" status="U" uuid="db/column266"/>
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="role_key" nativeTypeString="INTEGER" notNull="false" order="2" status="U" uuid="db/column268"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="active" nativeTypeString="CHAR(1)" notNull="false" order="3" status="U" uuid="db/column270"/>
+    <Index name="_213_135" primary="true" status="M" unique="true" uuid="db/index30">
+      <Column name="role_key" order="1"/>
+      <Column name="user_key" order="2"/>
+    </Index>
+  </Table>
+  <Table name="sys_users" status="U" uuid="db/table42">
+    <Column fglLength="4" fglType="6" fglTypeString="SERIAL" name="user_key" nativeTypeString="SERIAL" notNull="true" order="1" status="U" uuid="db/column272"/>
+    <Column fglLength="266" fglType="13" fglTypeString="VARCHAR(10,1)" name="username" nativeTypeString="VARCHAR(10)" notNull="false" order="2" status="U" uuid="db/column274"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="fullname" nativeTypeString="VARCHAR(40)" notNull="false" order="3" status="U" uuid="db/column276"/>
+    <Column fglLength="276" fglType="13" fglTypeString="VARCHAR(20,1)" name="password" nativeTypeString="VARCHAR(20)" notNull="false" order="4" status="U" uuid="db/column278"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="email" nativeTypeString="VARCHAR(40)" notNull="false" order="5" status="U" uuid="db/column280"/>
+    <Column fglLength="286" fglType="13" fglTypeString="VARCHAR(30,1)" name="office_tel" nativeTypeString="VARCHAR(30)" notNull="false" order="6" status="U" uuid="db/column282"/>
+    <Column fglLength="286" fglType="13" fglTypeString="VARCHAR(30,1)" name="mobile_tel" nativeTypeString="VARCHAR(30)" notNull="false" order="7" status="U" uuid="db/column284"/>
+    <Column fglLength="264" fglType="13" fglTypeString="VARCHAR(8,1)" name="def_cust" nativeTypeString="VARCHAR(8)" notNull="false" order="8" status="U" uuid="db/column286"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="user_type" nativeTypeString="CHAR(1)" notNull="false" order="9" status="U" uuid="db/column288"/>
+    <Column fglLength="2" fglType="1" fglTypeString="SMALLINT" name="prog_no" nativeTypeString="SMALLINT" notNull="false" order="10" status="U" uuid="db/column290"/>
+    <Column fglLength="1" fglType="0" fglTypeString="CHAR(1)" name="active" nativeTypeString="CHAR(1)" notNull="false" order="11" status="U" uuid="db/column292"/>
+    <Index name="_212_133" primary="true" status="M" unique="true" uuid="db/index32">
+      <Column name="user_key" order="1"/>
+    </Index>
+  </Table>
+  <Table name="test_ext" status="U" uuid="db/table44">
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="fld1" nativeTypeString="CHAR(10)" notNull="false" order="1" status="U" uuid="db/column294"/>
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="fld2" nativeTypeString="CHAR(10)" notNull="false" order="2" status="U" uuid="db/column296"/>
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="fld3" nativeTypeString="CHAR(10)" notNull="false" order="3" status="U" uuid="db/column298"/>
+  </Table>
+  <Table name="testrows" status="U" uuid="db/table46">
+    <Column fglLength="4" fglType="2" fglTypeString="INTEGER" name="fld1" nativeTypeString="INTEGER" notNull="false" order="1" status="U" uuid="db/column300"/>
+  </Table>
+  <Table name="todo_list" status="U" uuid="db/table48">
+    <Column fglLength="266" fglType="13" fglTypeString="VARCHAR(10,1)" name="e_logname" nativeTypeString="VARCHAR(10)" notNull="false" order="1" status="U" uuid="db/column302"/>
+    <Column fglLength="286" fglType="13" fglTypeString="VARCHAR(30,1)" name="e_name" nativeTypeString="VARCHAR(30)" notNull="false" order="2" status="U" uuid="db/column304"/>
+    <Column fglLength="286" fglType="13" fglTypeString="VARCHAR(30,1)" name="e_description" nativeTypeString="VARCHAR(30)" notNull="false" order="3" status="U" uuid="db/column306"/>
+    <Column fglLength="2" fglType="1" fglTypeString="SMALLINT" name="e_priority" nativeTypeString="SMALLINT" notNull="false" order="4" status="U" uuid="db/column308"/>
+    <Column fglLength="2" fglType="1" fglTypeString="SMALLINT" name="e_status" nativeTypeString="SMALLINT" notNull="false" order="5" status="U" uuid="db/column310"/>
+    <Column fglLength="4" fglType="7" fglTypeString="DATE" name="e_duedate" nativeTypeString="DATE" notNull="false" order="6" status="U" uuid="db/column312"/>
+  </Table>
+  <Table name="todo_user" status="U" uuid="db/table50">
+    <Column fglLength="266" fglType="13" fglTypeString="VARCHAR(10,1)" name="logname" nativeTypeString="VARCHAR(10)" notNull="false" order="1" status="U" uuid="db/column314"/>
+    <Column fglLength="266" fglType="13" fglTypeString="VARCHAR(10,1)" name="password" nativeTypeString="VARCHAR(10)" notNull="false" order="2" status="U" uuid="db/column316"/>
+    <Column fglLength="296" fglType="13" fglTypeString="VARCHAR(40,1)" name="username" nativeTypeString="VARCHAR(40)" notNull="false" order="3" status="U" uuid="db/column318"/>
+    <Column fglLength="356" fglType="13" fglTypeString="VARCHAR(100,1)" name="email" nativeTypeString="VARCHAR(100)" notNull="false" order="4" status="U" uuid="db/column320"/>
+  </Table>
+  <Table name="weblocalaccess" status="U" uuid="db/table52">
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="username" nativeTypeString="CHAR(10)" notNull="false" order="1" status="U" uuid="db/column322"/>
+    <Column fglLength="10" fglType="0" fglTypeString="CHAR(10)" name="password" nativeTypeString="CHAR(10)" notNull="false" order="2" status="U" uuid="db/column324"/>
+  </Table>
+  <ForeignKey cascadeDelete="false" name="r210_131" refTable="ord_head" status="U" table="ord_detail" uuid="db/foreignkey2">
+    <Column name="order_number" order="1" refName="order_number"/>
+  </ForeignKey>
+  <Views ActiveView="View-1">
+    <View Name="View-1">
+      <Layout>
+        <![CDATA[AAAAAgAAABQAZABiAC8AdABhAGIAbABlADIANkCrjQ+xAAAAQDOXgqAAAAAAAAAAAAAAAAEAAAAUAGQAYgAvAHQAYQBiAGwAZQAyADhArdjQ/8AAAEAzl4KgAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMwAwQLASSSdAAABAM5eCoAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADMAMkCxOCnOoAAAQDOXgqAAAAAAAAAAAAAAAAEAAAAUAGQAYgAvAHQAYQBiAGwAZQAzADRAsl4KdgAAAEAzl4KgAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMQAwQJJeCnYAAABAM5eCoAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADMANkCzg+sdYAAAQDOXgqAAAAAAAAAAAAAAAAEAAAASAGQAYgAvAHQAYQBiAGwAZQAyAAAAAAAAAABAM5eCoAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADEAMkCW9Y0TgAAAQDOXgqAAAAAAAAAAAAAAAAEAAAAUAGQAYgAvAHQAYQBiAGwAZQAzADhAtKnLxMAAAEAzl4KgAAAAAAAAAAAAAAABAAAAEgBkAGIALwB0AGEAYgBsAGUANEByXgp2AAAAQDOXgqAAAAAAAAAAAAAAAAEAAAAUAGQAYgAvAHQAYQBiAGwAZQAxADRAm40PsQAAAEAzl4KgAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMQA2QKASSSdAAABAM5eCoAAAAAAAAAAAAAAAAQAAABIAZABiAC8AdABhAGIAbABlADZAgl4KdgAAAEAzl4KgAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMQA4QKJeCnYAAABAM5eCoAAAAAAAAAAAAAAAAQAAABIAZABiAC8AdABhAGIAbABlADhAi40PsQAAAEAzl4KgAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUANQAwQLuND7EAAABAM5eCoAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADQAMEC1z6xsIAAAQDOXgqAAAAAAAAAAAAAAAAEAAAAUAGQAYgAvAHQAYQBiAGwAZQA1ADJAvLLwWGAAAEAzl4KgAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUANAAyQLb1jROAAABAM5eCoAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADQANEC4G2264AAAQDOXgqAAAAAAAAAAAAAAAAEAAAAUAGQAYgAvAHQAYQBiAGwAZQAyADBApKnLxMAAAEAzl4KgAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUANAA2QLlBTmJAAABAM5eCoAAAAAAAAAAAAAAAAQAAABQAZABiAC8AdABhAGIAbABlADIAMkCm9Y0TgAAAQDOXgqAAAAAAAAAAAAAAAAEAAAAUAGQAYgAvAHQAYQBiAGwAZQA0ADhAumcvCaAAAEAzl4KgAAAAAAAAAAAAAAABAAAAFABkAGIALwB0AGEAYgBsAGUAMgA0QKlBTmJAAABAM5eCoAAAAAAAAAAAAAAAAQ==]]>
+      </Layout>
+    </View>
+  </Views>
+  <DBData>
+    <Data path="db/index10@name" type="10" value=" 211_132"/>
+    <Data path="db/index12@name" type="10" value=" 210_130"/>
+    <Data path="db/index14@name" type="10" value=" 210_131"/>
+    <Data path="db/index16@name" type="10" value=" 208_128"/>
+    <Data path="db/index18@name" type="10" value=" 204_125"/>
+    <Data path="db/index20@name" type="10" value=" 204_126"/>
+    <Data path="db/index24@name" type="10" value=" 216_140"/>
+    <Data path="db/index26@name" type="10" value=" 215_138"/>
+    <Data path="db/index28@name" type="10" value=" 214_136"/>
+    <Data path="db/index2@name" type="10" value=" 203_123"/>
+    <Data path="db/index30@name" type="10" value=" 213_135"/>
+    <Data path="db/index32@name" type="10" value=" 212_133"/>
+    <Data path="db/index6@name" type="10" value=" 202_122"/>
+    <Data path="db/index8@name" type="10" value=" 201_121"/>
+  </DBData>
+</Schema>
