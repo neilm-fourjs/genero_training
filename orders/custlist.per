@@ -1,0 +1,27 @@
+SCHEMA custdemo
+
+LAYOUT
+TABLE
+{
+  Id   Name                  City
+ [f01 |f02                  |f03            ]
+ [f01 |f02                  |f03            ]
+ [f01 |f02                  |f03            ]
+ [f01 |f02                  |f03            ]
+}
+END
+END
+
+TABLES 
+   customer
+END
+
+ATTRIBUTES
+EDIT f01=customer.store_num;
+EDIT f02=customer.store_name;
+EDIT f03=customer.city;
+END
+
+INSTRUCTIONS
+SCREEN RECORD sa_cust (customer.*);
+END

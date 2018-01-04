@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<APPLICATION Parent="defaultwa"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://www.4js.com/ns/gas/3.00/cfextwa.xsd">
+
+	<RESOURCE Id="res.trn.path" Source="INTERNAL">/home/training1</RESOURCE>
+
+	<EXECUTION>
+		<ENVIRONMENT_VARIABLE Id="FGLPROFILE">$(res.trn.path)/etc/fglprofile</ENVIRONMENT_VARIABLE>
+		<PATH>$(res.trn.path)/query</PATH>
+		<MODULE>query.42r</MODULE>
+	</EXECUTION>
+</APPLICATION>

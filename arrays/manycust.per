@@ -1,0 +1,33 @@
+SCHEMA custdemo
+
+LAYOUT
+ TABLE 
+ {
+  Id   Name                   City             State  Zipcode       Contact          Phone
+ [f01][f02                  ][f03            ][f04  ][f05         ][f06            ][f07         ]
+ [f01][f02                  ][f03            ][f04  ][f05         ][f06            ][f07         ]
+ [f01][f02                  ][f03            ][f04  ][f05         ][f06            ][f07         ]
+ [f01][f02                  ][f03            ][f04  ][f05         ][f06            ][f07         ]
+ [f01][f02                  ][f03            ][f04  ][f05         ][f06            ][f07         ]
+ [f01][f02                  ][f03            ][f04  ][f05         ][f06            ][f07         ]
+ }
+ END
+END
+
+TABLES 
+   customer
+END
+
+ATTRIBUTES
+EDIT f01=customer.store_num;
+EDIT f02=customer.store_name;
+EDIT f03=customer.city;
+EDIT f04=customer.state;
+EDIT f05=customer.zipcode;
+EDIT f06=customer.contact_name;
+EDIT f07=customer.phone;
+END
+
+INSTRUCTIONS
+SCREEN RECORD sa_cust (customer.*);
+END

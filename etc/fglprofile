@@ -1,0 +1,10 @@
+
+dbi.default.driver = "dbmsqt"
+
+dbi.database.custdemo.driver = "dbmsqt"
+dbi.database.custdemo.source = "../db/custdemo.db"
+
+#dbi.database.spec.ifxemul.dblquotes =false
+
+#fglrun.localization.file.count = 1 
+#fglrun.localization.file.1.name = "test"

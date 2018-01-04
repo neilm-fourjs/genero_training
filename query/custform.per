@@ -1,0 +1,44 @@
+SCHEMA custdemo
+
+LAYOUT
+VBOX
+
+GRID
+{
+ Store #:[f01  ] Name:[f02                 ]     
+}
+END -- end GRID
+
+GRID
+{
+ Address:[f03                 ]
+         [f04                 ]
+    City:[f05             ]State:[f6  ]Zip:[f07   ] 
+ Contact:[f08                           ]
+   Phone:[f09                ]       
+
+ Created:[f10        ]
+}   
+END -- end GRID 
+END -- end VBOX
+END -- end LAYOUT
+
+TABLES   
+  customer
+END
+
+ATTRIBUTES
+EDIT     f01 = customer.store_num,
+               REQUIRED, COMMENT = "This is the co-op store number";
+EDIT     f02 = customer.store_name;
+EDIT     f03 = customer.addr;
+EDIT     f04 = customer.addr2;
+EDIT     f05 = customer.city;
+EDIT      f6 = customer.state;  
+EDIT     f07 = customer.zipcode;
+EDIT     f08 = customer.contact_name;
+EDIT     f09 = customer.phone;
+EDIT     f10 = customer.created_on;
+END
+
+
