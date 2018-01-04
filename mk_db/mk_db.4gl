@@ -26,7 +26,7 @@ MAIN
 	DISPLAY "FGLPROFILE=",fgl_getEnv("FGLPROFILE")
 	DISPLAY "db driver:",fgl_getResource("dbi.database."||c_db||".driver")
 
-	CALL mk_db( c_db||".db" )
+	CALL mk_db( os.path.join(fgl_getEnv("DBPATH"),c_db||".db") )
 
 	CALL connect( c_db )
 

@@ -230,7 +230,7 @@ FUNCTION order_select(where_clause STRING)
 			|| "WHERE orders.store_num = customer.store_num "
 			|| "AND " || where_clause
 
-	DECLARE order_curs CURSOR FROM sql_text	
+	DECLARE order_curs SCROLL CURSOR FROM sql_text	
 	OPEN order_curs
 	IF (NOT order_fetch(1)) THEN
 		CLEAR FORM
