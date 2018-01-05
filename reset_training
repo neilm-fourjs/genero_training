@@ -1,0 +1,37 @@
+#!/bin/bash
+
+BASE=/opt/users
+DTE=$( date +'%Y%m%d-%H%M%S' )
+
+cd $BASE
+for dir in `ls -d1 training?`
+do
+	cd $BASE
+	mv $dir $dir.$DTE
+	mkdir $dir
+	cd $BASE/$dir
+	pwd
+	cp ../training/.vimrc .
+	cp -r ../training/.vim .
+	cp ../training/.profile .
+	cp ../training/.bashrc .
+	cp ../training/env.sh .
+	cp ../training/training.4pw .
+	cp -r ../training/.FourJs .
+	cp -r ../training/arrays .
+	cp -r ../training/db .
+	cp -r ../training/mk_db .
+	cp -r ../training/etc .
+	sed -i "s/training1/$dir/g" ./etc/query.xcf
+	cp -r ../training/bin .
+	cp -r ../training/orders .
+	cp -r ../training/getGDCcfg .
+	cp -r ../training/query .
+	cp -r ../training/reports .
+	cd $BASE
+	chown -R $dir:training $dir
+done
+
+cd $BASE
+chown -R training:training training
+

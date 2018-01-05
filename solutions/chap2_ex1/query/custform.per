@@ -1,8 +1,16 @@
 SCHEMA custdemo
 
-SCREEN
+LAYOUT ( TEXT="Store Query" )
+VBOX
+GROUP
+GRID
 {
- Store #:[f01  ] Name:[f02                 ]     
+ Store #:[f01  ] Name:[f02                 ]    
+}
+END -- GRID
+END -- GROUP
+GRID
+{ 
  Address:[f03                 ]
          [f04                 ]
     City:[f05             ]State:[f6  ]Zip:[f07   ] 
@@ -11,7 +19,8 @@ SCREEN
 
  Created:[f10        ]
 }   
-END -- screen
+END -- GRID
+END -- VBOX
 
 TABLES   
 customer
@@ -22,8 +31,8 @@ f02 = customer.store_name;
 f03 = customer.addr;
 f04 = customer.addr2;
 f05 = customer.city;
-f6 =  customer.state;  
+COMBOBOX f6 =  customer.state, ITEMS=("WI","IL","IA");  
 f07 = customer.zipcode;
 f08 = customer.contact_name;
 f09 = customer.phone;
-f10 = customer.created_on;
+DATEEDIT f10 = customer.created_on;
