@@ -56,8 +56,3 @@ MAIN
  
 END MAIN
 --------------------------------------------------------------------------------
-FUNCTION ui_init()
-
-	CALL ui.interface.loadToolBar("mytoolbar")
-
-END FUNCTION

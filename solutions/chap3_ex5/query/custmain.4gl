@@ -15,7 +15,7 @@ MAIN
 	SET LOCK MODE TO WAIT 6
 	LET query_ok = FALSE
 
-	CALL my_init()
+	CALL ui_init()
 	CLOSE WINDOW SCREEN
 	OPEN WINDOW w1 WITH FORM "custform"
 
@@ -56,7 +56,7 @@ MAIN
  
 END MAIN
 --------------------------------------------------------------------------------
-FUNCTION my_init()
+FUNCTION ui_init()
 
 	CALL ui.interface.loadToolBar("mytoolbar")
 	CALL ui.interface.loadTopMenu("mytopmenu")
