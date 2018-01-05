@@ -1,0 +1,43 @@
+SCHEMA custdemo
+
+LAYOUT ( TEXT="Store Query" )
+GRID
+{
+<G ""                                               >
+ [lab0  ][f01  : :"Name:":f02                 ]    
+<                                                   >
+<G ""                                               >
+ [lab1  ][f03                 ]
+         [f04                 ]
+ [lab2  ][f05             ]
+ [lab3  ][f6  : :"Zip:":f07   ] 
+ [lab4  ][f08                           ]
+ [lab5  ][f09                ]       
+ [lab6  ][f10       ]       
+<                                                   >
+}   
+END -- GRID
+
+TABLES   
+customer
+
+ATTRIBUTES
+
+LABEL lab0 : lab0 , TEXT=%"Store #:",   JUSTIFY=RIGHT;
+LABEL lab1 : lab1 , TEXT=%"Address:",   JUSTIFY=RIGHT;
+LABEL lab2 : lab2 , TEXT=%"City:",      JUSTIFY=RIGHT;
+LABEL lab3 : lab3 , TEXT=%"State:",     JUSTIFY=RIGHT;
+LABEL lab4 : lab4 , TEXT=%"Contact:",   JUSTIFY=RIGHT;
+LABEL lab5 : lab5 , TEXT=%"Phone:",     JUSTIFY=RIGHT;
+LABEL lab6 : lab6 , TEXT=%"Created:",   JUSTIFY=RIGHT;
+
+f01 = customer.store_num, REQUIRED, COMMENT = "This is the co-op store number";
+f02 = customer.store_name;
+f03 = customer.addr;
+f04 = customer.addr2;
+f05 = customer.city;
+COMBOBOX f6 =  customer.state, ITEMS=("WI","IL","IA");  
+f07 = customer.zipcode;
+f08 = customer.contact_name;
+f09 = customer.phone;
+DATEEDIT f10 = customer.created_on;
