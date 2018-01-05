@@ -37,6 +37,7 @@ LAYOUT ( TEXT="Orders", STYLE="main2" )
     [f08    |f09              |f10    |f11    |f12        |f13      ]
     [f08    |f09              |f10    |f11    |f12        |f13      ]
     [f08    |f09              |f10    |f11    |f12        |f13      ]
+                                                          [sum      ]
    }
   END
  END -- VBOX 
@@ -55,6 +56,7 @@ EDIT       f05 = orders.fac_code, UPSHIFT;
 EDIT       f06 = orders.ship_instr;
 CHECKBOX   f07 = orders.promo, TEXT="Promotional", NOT NULL,
                  VALUEUNCHECKED="N", VALUECHECKED="Y"; 
+-- Table
 BUTTONEDIT f08 = items.stock_num, REQUIRED, ACTION=zoom2;
 LABEL      f09 = stock.description;
 EDIT       f10 = items.quantity, REQUIRED;
@@ -62,6 +64,7 @@ LABEL      f11 = stock.unit;
 LABEL      f12 = items.price;
 LABEL      f13 = formonly.line_total TYPE DECIMAL(9,2);
 EDIT       f14 = formonly.order_total TYPE DECIMAL(9,2), NOENTRY;
+AGGREGATE  sum = FORMONLY.total;   
 END
 
 INSTRUCTIONS
