@@ -15,8 +15,28 @@ Property of Four Js*
      <StyleAttribute name="actionPanelPosition" value="bottom" />
      <StyleAttribute name="ringMenuPosition" value="bottom" />
   </Style>
+  <Style name=":focus">
+     <StyleAttribute name="backgroundColor" value="LightSeaGreen" />
+     <StyleAttribute name="textColor" value="white" />
+  </Style>
+  <Style name=".darkred">
+		<StyleAttribute name="defaultTTFColor" value="red" />
+  </Style>
+  <Style name="Edit">
+     <StyleAttribute name="textColor" value="darkred" />
+  </Style>
+  <Style name="DateEdit">
+     <StyleAttribute name="textColor" value="darkred" />
+  </Style>
+  <Style name="ComboBox">
+     <StyleAttribute name="textColor" value="darkred" />
+  </Style>
+  <Style name="Grid">
+     <StyleAttribute name="fontSize" value="1.2em" />
+  </Style>
   <Style name="Label">
      <StyleAttribute name="fontWeight" value="bold" />
+     <StyleAttribute name="textColor" value="darkblue" />
   </Style>
   <Style name="Window">
      <StyleAttribute name="windowType" value="normal" />
@@ -26,9 +46,10 @@ Property of Four Js*
      <StyleAttribute name="startMenuPosition" value="menu" />
   </Style>
   <Style name="Window.main2">
-     <StyleAttribute name="windowType" value="normal" />
-     <StyleAttribute name="actionPanelPosition" value="none" />
-     <StyleAttribute name="ringMenuPosition" value="none" />
+    <StyleAttribute name="windowType" value="normal" />
+    <StyleAttribute name="actionPanelPosition" value="none" />
+    <StyleAttribute name="ringMenuPosition" value="none" />
+		<StyleAttribute name="defaultTTFColor" value="red" />
   </Style>
   <Style name="Window.dialog">
      <StyleAttribute name="windowType" value="modal" />
