@@ -103,13 +103,13 @@ FUNCTION order_new()
 			order_rec.fac_code,
 			order_rec.ship_instr,
 			order_rec.promo
-		WITHOUT DEFAULTS
-		ATTRIBUTES(UNBUFFERED)
+		ATTRIBUTES(UNBUFFERED, WITHOUT DEFAULTS)
 
 		BEFORE INPUT
 			LET order_rec.order_date = TODAY
 			LET order_rec.fac_code = "ASC"
 			LET order_rec.ship_instr = "FEDEX"
+			LET order_rec.promo = "Y"
 
 		ON CHANGE store_num
 			SELECT store_name INTO order_rec.store_name
