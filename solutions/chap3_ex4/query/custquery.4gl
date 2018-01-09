@@ -208,7 +208,7 @@ FUNCTION update_cust()
 	BEGIN WORK
 
 	SELECT * INTO l_custrec.* FROM customer 
-		WHERE store_num = mr_custrec.store_num FOR UPDATE
+		WHERE store_num = mr_custrec.store_num
 
 	IF SQLCA.SQLCODE = NOTFOUND THEN
 			ERROR "Store has been deleted"

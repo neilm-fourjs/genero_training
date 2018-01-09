@@ -105,12 +105,6 @@
         <File filePath="query/custquery.4gl"/>
       </Application>
     </Group>
-    <Group label="WebClient" language="Genero">
-      <Application binaryName="testapp" id="99748610" label="testapp" targetDirectory="$(ProjectDir)/GWC/src/bin">
-        <File filePath="GWC/src/testapp/testapp.4gl"/>
-        <File filePath="GWC/src/testapp/testform.per"/>
-      </Application>
-    </Group>
   </Group>
   <Group label="getGDCcfg" language="Genero">
     <Application binaryName="getGDCcfg" id="116785536" label="getGDCcfg" targetDirectory="$(ProjectDir)/getGDCcfg">
