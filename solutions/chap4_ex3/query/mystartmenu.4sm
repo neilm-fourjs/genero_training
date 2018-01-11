@@ -1,5 +1,0 @@
-<StartMenu>
-	<StartMenuGroup text="Demos">
-		<StartMenuCommand text="FGL Demo" exec="cd $FGLDIR/demo &amp;&amp; fglrun demo" />
-	</StartMenuGroup>
-</StartMenu>

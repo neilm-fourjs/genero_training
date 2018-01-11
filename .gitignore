@@ -10,7 +10,7 @@
 *_dbx*.*
 
 # Presuming all pdf files are generated from document source
-*.pdf
+#*.pdf
 
 # Genero generated schemas
 *.sch

@@ -1,0 +1,47 @@
+SCHEMA custdemo
+
+LAYOUT ( TEXT=%"Store Query", IMAGE="smiley", STYLE="main2" )
+GRID
+{
+<G g1                                               >
+ [lab0][f01  : :lnam:f02                 ]    
+<                                                   >
+<G g2                                               >
+ [lab1][f03                 ]
+       [f04                 ]
+ [lab2][f05             ]
+ [lab3][f6  :             :lzip:f07   ] 
+ [lab4][f08                           ]
+ [lab5][f09                ]       
+ [lab6][f10       ]       
+<                                                   >
+}   
+END -- GRID
+
+TABLES
+customer
+
+ATTRIBUTES
+GROUP g1 : mygroup1 GRIDCHILDRENINPARENT, TEXT=%"Store";
+GROUP g2 : GRIDCHILDRENINPARENT, TEXT=%"Details";
+
+LABEL lnam : lnam , TEXT=%"Name:",      JUSTIFY=RIGHT;
+LABEL lzip : lzip , TEXT=%"Zip:",       JUSTIFY=RIGHT;
+LABEL lab0 : lab0 , TEXT=%"Store #:",   JUSTIFY=RIGHT;
+LABEL lab1 : lab1 , TEXT=%"Address:",   JUSTIFY=RIGHT;
+LABEL lab2 : lab2 , TEXT=%"City:",      JUSTIFY=RIGHT;
+LABEL lab3 : lab3 , TEXT=%"State:",     JUSTIFY=RIGHT;
+LABEL lab4 : lab4 , TEXT=%"Contact:",   JUSTIFY=RIGHT;
+LABEL lab5 : lab5 , TEXT=%"Phone:",     JUSTIFY=RIGHT;
+LABEL lab6 : lab6 , TEXT=%"Created:",   JUSTIFY=RIGHT;
+
+f01 = customer.store_num, REQUIRED, COMMENT =%"This is the co-op store number";
+f02 = customer.store_name;
+f03 = customer.addr;
+f04 = customer.addr2;
+f05 = customer.city;
+COMBOBOX f6 =  customer.state, INITIALIZER=set_combo_list, NOT NULL; { ITEMS=("WI","IL","IA");  }
+f07 = customer.zipcode;
+f08 = customer.contact_name;
+f09 = customer.phone;
+DATEEDIT f10 = customer.created_on;
