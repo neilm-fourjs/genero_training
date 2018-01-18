@@ -83,6 +83,7 @@
         <File filePath="reports/report2.4gl"/>
       </Application>
       <Application binaryName="report3" dependencies="1084034362,797781202" id="71042480" label="report3">
+        <File filePath="reports/custrpt1.4rp"/>
         <File filePath="reports/report3.4gl"/>
       </Application>
     </Group>

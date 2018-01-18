@@ -154,6 +154,7 @@ run8: $(PRG8)
 
 clean:
 	find . -name \*.42? -exec rm {} \; ;\
+	find . -name \*.rdd -exec rm {} \; ;\
 	find . -name \*.4go -exec rm {} \; ;\
 	find . -name \*.4gi -exec rm {} \; ;\
 	find . -name \*.4ge -exec rm {} \; ;\

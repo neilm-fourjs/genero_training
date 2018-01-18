@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report:Report xmlns:rtl="http://www.4js.com/2004/RTL" xmlns:report="http://www.4js.com/2007/REPORT" xmlns="http://www.4js.com/2004/PXML" gstVersion="30a07" version="6.00">
+    <report:Settings RWPageWidth="letterwidth" RWPageLength="letterlength" RWLeftMargin="0.5inch" RWTopMargin="0.5inch" RWRightMargin="0.5inch" RWBottomMargin="0.5inch">
+        <report:FormatList>
+            <report:Format-SVG/>
+            <report:Format-PDF/>
+            <report:Format-image/>
+        </report:FormatList>
+    </report:Settings>
+    <report:Data RWDataLocation="report3.rdd" RWFglReportName="report1"/>
+    <report:Conflicts/>
+    <rtl:stylesheet>
+        <PXML>
+            <rtl:match name="Report" nameConstraint="Report" minOccurs="1" maxOccurs="1">
+                <MINIPAGE name="Page Root" width="max" length="max" fontName="Century Gothic" fontSize="10">
+                    <LAYOUTNODE name="Page Header" width="max" length="min" port="anyPageHeader">
+                        <MINIPAGE name="StripeLayouter3" width="min" length="max" layoutDirection="leftToRight">
+                            <rtl:input-variable name="l_head" type="FGLString" expectedLocation="expectedHere"/>
+                            <WORDBOX name="Report Title" x="0" y="max/2" anchorX="0" anchorY="0.5" alignment="baseline" fontSize="20" baselineType="leftleft" floatingBehavior="enclosed" text="{{l_head}}"/>
+                            <PAGENOBOX name="PageNoBox" x="1.23857" y="max" anchorX="0" anchorY="1" alignment="baseline" baselineType="leftleft" floatingBehavior="enclosed" textAlignment="right"/>
+                            <rtl:input-variable name="l_date" type="FGLString" expectedLocation="expectedHere"/>
+                            <WORDBOX name="l_date Value" class="grwStringValue" x="2" y="2" anchorX="0" anchorY="0" floatingBehavior="enclosed" text="{{l_date}}"/>
+                        </MINIPAGE>
+                        <MINIPAGE name="Table Header" class="grwTableHeader" width="min" length="max" layoutDirection="leftToRight">
+                            <WORDBOX name="Spacer" alignment="baseline" baselineType="leftleft" port="itemSeparator" text=" "/>
+                            <WORDBOX name="l_cst.store_num Title" class="grwTableNumericColumnTitle" width="{max(width(&quot;{&quot;Store Num&quot;.translate()}&quot;),width(&quot;000&quot;))}" floatingBehavior="enclosed" textAlignment="right" text="Num" localizeText="true"/>
+                            <WORDBOX name="l_cst.store_name Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Store Name&quot;.translate()}&quot;),width(&quot;M&quot;)*22)}" floatingBehavior="enclosed" text="Store Name" localizeText="true"/>
+                            <WORDBOX name="l_cst.city Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;City&quot;.translate()}&quot;),width(&quot;M&quot;)*15)}" floatingBehavior="enclosed" text="City" localizeText="true"/>
+                            <WORDBOX name="l_cst.created_on Title" class="grwTableDatetimeColumnTitle" width="{max(width(&quot;{&quot;Created On&quot;.translate()}&quot;),width(&quot;0000-00-00&quot;))}" floatingBehavior="enclosed" text="Created On" localizeText="true"/>
+                        </MINIPAGE>
+                        <MINIPAGE name="Separator" width="1" length="max" bgColor="#000000" layoutDirection="leftToRight"/>
+                    </LAYOUTNODE>
+                    <rtl:match name="Group state" nameConstraint="Group" minOccurs="0" maxOccurs="unbounded">
+                        <rtl:match name="Group state_name" nameConstraint="Group" minOccurs="0" maxOccurs="unbounded">
+                            <LAYOUTNODE name="LayoutNode" width="30" length="max" layoutDirection="leftToRight" floatingBehavior="enclosed" borderWidth="0" borderBottomWidth="1" borderStyle="solid">
+                                <WORDBOX name="l_st.state_name Title" class="grwTableStringColumnTitle" x="max" y="2" anchorX="1" anchorY="0" alignment="baseline" floatingBehavior="enclosed" text="State:" localizeText="true"/>
+                                <rtl:input-variable name="l_st.state_name" type="FGLString" expectedLocation="expectedAhead"/>
+                                <WORDBOX name="l_st.state_name Value" class="grwStringValue" x="max" y="30" anchorX="1" anchorY="0" alignment="baseline" floatingBehavior="enclosed" text="{{l_st.state_name}}"/>
+                            </LAYOUTNODE>
+                            <rtl:match name="OnEveryRow" nameConstraint="OnEveryRow" minOccurs="0" maxOccurs="unbounded">
+                                <MINIPAGE name="Table Row" class="grwTableRow" width="min" length="max" layoutDirection="leftToRight">
+                                    <WORDBOX name="Spacer_1" alignment="baseline" baselineType="leftleft" port="itemSeparator" text=" "/>
+                                    <rtl:input-variable name="l_cst.store_num" type="FGLNumeric" expectedLocation="expectedHere"/>
+                                    <DECIMALFORMATBOX name="l_cst.store_num Value" class="grwTableNumericColumnValue" width="{max(width(&quot;{&quot;Store Num&quot;.translate()}&quot;),width(&quot;000&quot;))}" anchorX="1" floatingBehavior="enclosed" textAlignment="right" format="----------#" value="{{l_cst.store_num}}"/>
+                                    <rtl:input-variable name="l_cst.store_name" type="FGLString" expectedLocation="expectedHere"/>
+                                    <WORDBOX name="l_cst.store_name Value" class="grwStringValue" width="{max(width(&quot;{&quot;Store Name&quot;.translate()}&quot;),width(&quot;M&quot;)*22)}" floatingBehavior="enclosed" text="{{l_cst.store_name}}"/>
+                                    <rtl:input-variable name="l_cst.city" type="FGLString" expectedLocation="expectedHere"/>
+                                    <WORDBOX name="l_cst.city Value" class="grwStringValue" width="{max(width(&quot;{&quot;City&quot;.translate()}&quot;),width(&quot;M&quot;)*15)}" floatingBehavior="enclosed" text="{{l_cst.city}}"/>
+                                    <rtl:input-variable name="l_cst.created_on" type="FGLString" expectedLocation="expectedHere"/>
+                                    <WORDBOX name="l_cst.created_on Value" class="grwStringValue" width="{max(width(&quot;{&quot;Created On&quot;.translate()}&quot;),width(&quot;0000-00-00&quot;))}" floatingBehavior="enclosed" text="{{l_cst.created_on}}"/>
+                                </MINIPAGE>
+                            </rtl:match>
+                        </rtl:match>
+                    </rtl:match>
+                </MINIPAGE>
+            </rtl:match>
+        </PXML>
+    </rtl:stylesheet>
+</report:Report>
