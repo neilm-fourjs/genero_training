@@ -60,7 +60,7 @@
   </Settings>
   <LanguageList version="1.0"/>
   <PlatformList version="1.0"/>
-  <Group environment="file:FGLPROFILE=../etc/fglprofile" label="custdemo" language="Genero">
+  <Group environment="dir:DBPATH=../db,file:FGLPROFILE=../etc/fglprofile" label="custdemo" language="Genero">
     <Group compilerOptions="--build-rdd" label="Reports" language="Genero" targetDirectory="$(ProjectDir)/reports">
       <Library binaryName="lib" id="797781202" label="lib">
         <File filePath="reports/fjs_demos.4db"/>
@@ -80,6 +80,11 @@
       </Application>
       <Application binaryName="report3" dependencies="1084034362,797781202" id="71042480" label="report3">
         <File filePath="reports/report3.4gl"/>
+      </Application>
+    </Group>
+    <Group label="SetUp">
+      <Application binaryName="mk_db" id="5263080" label="mk_db" targetDirectory="$(ProjectDir)/mk_db">
+        <File filePath="mk_db/mk_db.4gl"/>
       </Application>
     </Group>
     <Group label="UserInterface" language="Genero">
