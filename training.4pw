@@ -61,9 +61,13 @@
   <LanguageList version="1.0"/>
   <PlatformList version="1.0"/>
   <Group environment="dir:DBPATH=../db,file:FGLPROFILE=../etc/fglprofile" label="custdemo" language="Genero">
+    <Group label="Config_and_DB">
+      <Library binaryName="db" id="-1863776144" label="db">
+        <File filePath="etc/custdemo.4db"/>
+      </Library>
+    </Group>
     <Group compilerOptions="--build-rdd" label="Reports" language="Genero" targetDirectory="$(ProjectDir)/reports">
-      <Library binaryName="lib" id="797781202" label="lib">
-        <File filePath="reports/fjs_demos.4db"/>
+      <Library binaryName="lib" dependencies="-1863776144" id="797781202" label="lib">
         <File filePath="reports/lib.4gl"/>
       </Library>
       <Library binaryName="lib_rpt" id="741296980" label="lib_rpt">
@@ -93,9 +97,6 @@
         <File filePath="arrays/cust_stub.4gl"/>
         <File filePath="arrays/manycust.per"/>
       </Application>
-      <Library binaryName="db" id="-1863776144" label="db">
-        <File filePath="etc/custdemo.4db"/>
-      </Library>
       <Application binaryName="orders" dependencies="-1863776144" id="79599520" label="orders" targetDirectory="$(ProjectDir)/orders">
         <File filePath="orders/custlist.4gl"/>
         <File filePath="orders/custlist.per"/>

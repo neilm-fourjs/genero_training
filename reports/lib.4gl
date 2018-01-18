@@ -2,7 +2,7 @@
 FUNCTION db_connect()
 	DEFINE l_db VARCHAR(30)
 
-	LET l_db = "fjs_demos"
+	LET l_db = "custdemo"
 	TRY
 		CONNECT TO l_db
 	CATCH
