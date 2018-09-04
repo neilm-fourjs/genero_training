@@ -103,13 +103,13 @@ FUNCTION order_new()
 			order_rec.fac_code,
 			order_rec.ship_instr,
 			order_rec.promo
-		ATTRIBUTES(UNBUFFERED, WITHOUT DEFAULTS)
+		WITHOUT DEFAULTS
+		ATTRIBUTES(UNBUFFERED)
 
 		BEFORE INPUT
 			LET order_rec.order_date = TODAY
 			LET order_rec.fac_code = "ASC"
 			LET order_rec.ship_instr = "FEDEX"
-			LET order_rec.promo = "Y"
 
 		ON CHANGE store_num
 			SELECT store_name INTO order_rec.store_name
@@ -462,9 +462,8 @@ END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION item_update(curr_pa SMALLINT)
 	TRY
-		UPDATE items SET
-			items.stock_num = arr_items[curr_pa].stock_num,
-			items.quantity	= arr_items[curr_pa].quantity
+		UPDATE items SET (stock_num,quantity) =
+			(arr_items[curr_pa].stock_num,arr_items[curr_pa].quantity)
 			WHERE items.stock_num = arr_items[curr_pa].stock_num
 				AND items.order_num = order_rec.order_num
 			MESSAGE msg09
