@@ -6,7 +6,7 @@ FUNCTION ui_init()
 
 	CALL ui.interface.loadToolBar("mytoolbar")
 	CALL ui.interface.loadTopMenu("mytopmenu")
-	CALL ui.interface.loadStartMenu("mystartmenu")
+--	CALL ui.interface.loadStartMenu("mystartmenu")
 
 END FUNCTION
 --------------------------------------------------------------------------------

@@ -1,15 +1,26 @@
+<?xml version="1.0" encoding="ANSI_X3.4-1968"?>
 <ToolBar>
-	<ToolBarItem name="quit"/>
-	<ToolBarItem name="accept"/>
-	<ToolBarItem name="cancel"/>
-	<ToolBarSeparator/>
-	<ToolBarItem name="find"/>
-	<ToolBarItem name="add"/>
-	<ToolBarItem name="update"/>
-	<ToolBarItem name="delete"/>
-	<ToolBarSeparator/>
-	<ToolBarItem name="previous"/>
-	<ToolBarItem name="next"/>
-	<ToolBarSeparator/>
-	<ToolBarItem name="hide"/>
+  <ToolBarItem name="quit" />
+
+  <ToolBarSeparator/>
+  <ToolBarItem name="accept" />
+  <ToolBarItem name="cancel" />
+
+  <!--ToolBarSeparator/>
+  <ToolBarItem name="editcopy" />
+  <ToolBarItem name="editcut" />
+  <ToolBarItem name="editpaste" /-->
+
+  <ToolBarSeparator/>
+  <ToolBarItem name="find" />
+  <ToolBarItem name="previous" />
+  <ToolBarItem name="next" />
+
+  <ToolBarSeparator/>
+  <ToolBarItem name="add" />
+  <ToolBarItem name="update" />
+  <ToolBarItem name="delete" />
+
+  <ToolBarSeparator/>
+  <ToolBarItem name="hide" />
 </ToolBar>

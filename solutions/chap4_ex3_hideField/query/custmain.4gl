@@ -15,9 +15,9 @@ MAIN
 
 	LET query_ok = FALSE
 
-	CALL ui_init()
 	CLOSE WINDOW SCREEN
 	OPEN WINDOW w1 WITH FORM "custform"
+	CALL ui_init(ui.Window.getCurrent().getForm())
 
 	CALL ui.Window.getCurrent().setText("Hello World")
 
@@ -52,12 +52,7 @@ MAIN
 
 		ON ACTION hide 
 			LET l_tf = NOT l_tf
-			CALL hide_field( "customer.contact_name", "lab4", l_tf )
-			IF l_tf THEN
-				CALL DIALOG.getForm().setElementText("hide","Show")
-			ELSE
-				CALL DIALOG.getForm().setElementText("hide","Hide")
-			END IF
+			CALL hide_field( "customer.contact_name", "lcon", l_tf )
 
 		ON ACTION quit EXIT MENU
 		ON ACTION close EXIT MENU

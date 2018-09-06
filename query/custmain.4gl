@@ -19,22 +19,23 @@ MAIN
 	OPEN WINDOW w1 WITH FORM "custform"
 
 	MENU
-		ON ACTION close
-			EXIT MENU
 		ON ACTION find 
 			LET query_ok = query_cust()
-		ON ACTION next
-			IF query_ok THEN
-				CALL fetch_rel_cust(1)
-			ELSE
-				MESSAGE "You must query first."
-			END IF
+
 		ON ACTION previous
 			IF query_ok THEN
 				CALL fetch_rel_cust(-1)
 			ELSE
 				MESSAGE "You must query first."
 			END IF
+
+		ON ACTION next
+			IF query_ok THEN
+				CALL fetch_rel_cust(1)
+			ELSE
+				MESSAGE "You must query first."
+			END IF
+
 		ON ACTION add
 			IF inpupd_cust("A") THEN
 				CALL insert_cust()
@@ -47,8 +48,12 @@ MAIN
 			IF inpupd_cust("U") THEN
 				CALL update_cust()
 			END IF
+
 		ON ACTION quit 
 			EXIT MENU
+		ON ACTION close
+			EXIT MENU
+
 	END MENU
 	
 	CLOSE WINDOW w1

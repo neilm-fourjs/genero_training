@@ -1,27 +1,29 @@
 SCHEMA custdemo
---------------------------------------------------------------------------------
-FUNCTION ui_init()
-	CALL ui.form.setDefaultInitializer("form_init")
-	CALL ui.Interface.loadStartMenu("mystartmenu")
-END FUNCTION
---------------------------------------------------------------------------------
-FUNCTION form_init( l_f ui.Form )
+FUNCTION ui_init(l_f ui.Form)
 	CALL l_f.loadToolBar("mytoolbar")
 	CALL l_f.loadTopMenu("mytopmenu")
-	CALL extend_form(l_f.getNode())
 END FUNCTION
 --------------------------------------------------------------------------------
-FUNCTION set_combo_list( l_cb ui.ComboBox )
-	DEFINE l_state RECORD LIKE state.*
-	DECLARE state_cur CURSOR FOR SELECT * FROM state
-	FOREACH state_cur INTO l_state.*
-		CALL l_cb.addItem(l_state.state_code, l_state.state_name CLIPPED)
+FUNCTION set_combo_list( l_cb ui.combobox )
+	DEFINE l_rec RECORD LIKE state.*
+	DECLARE cur CURSOR FOR SELECT * FROM state
+	FOREACH cur INTO l_rec.*
+		CALL l_cb.addItem(l_rec.state_code, l_rec.state_name)
 	END FOREACH
 END FUNCTION
 --------------------------------------------------------------------------------
-FUNCTION hide_field( l_nam STRING, l_lab STRING, l_tf BOOLEAN)
-	CALL ui.Window.getCurrent().getForm().setElementHidden(l_nam, l_tf)
-	CALL ui.Window.getCurrent().getForm().setElementHidden(l_lab, l_tf)
+FUNCTION hide_field( l_fld STRING, l_lab STRING, l_hide BOOLEAN )
+	DEFINE l_f ui.Form
+	LET l_f = ui.Window.getCurrent().getForm()
+	CALL l_f.setElementHidden(l_lab,l_hide)
+	CALL l_f.setFieldHidden(l_fld,l_hide)
+	IF l_hide THEN
+		CALL l_f.setElementText("hide","Show")
+		CALL l_f.setElementImage("hide","fa-user")
+	ELSE
+		CALL l_f.setElementText("hide","Hide")
+		CALL l_f.setElementImage("hide","fa-user-o")
+	END IF
 END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION set_actions( d ui.Dialog, l_tf BOOLEAN )
@@ -48,13 +50,13 @@ END FUNCTION
 -- @param l_form Dom Node of the form object.
 FUNCTION extend_form(l_form om.DomNode)
 	DEFINE l_box	om.DomNode
-  LET l_box = l_form.getFirstChild()
-  WHILE l_box IS NOT NULL -- Find the VBOX
-    IF l_box.getTagName() MATCHES "[VH]Box" THEN
-      EXIT WHILE
-    END IF
-    LET l_box = l_box.getNext()
-  END WHILE
+	LET l_box = l_form.getFirstChild()
+	WHILE l_box IS NOT NULL -- Find the VBOX
+		IF l_box.getTagName() MATCHES "[VH]Box" THEN
+			EXIT WHILE
+		END IF
+		LET l_box = l_box.getNext()
+	END WHILE
 	IF l_box IS NULL THEN RETURN END IF -- can't extend, so bail!
 	LET l_box = l_box.createChild("Group") -- New Group
 	CALL l_box.setAttribute("text","Extension:")

@@ -1,17 +1,28 @@
+<?xml version="1.0" encoding="ANSI_X3.4-1968"?>
 <TopMenu>
-	<TopMenuGroup text="File">
-		<TopMenuCommand name="find" />
-		<TopMenuSeparator />
-		<TopMenuCommand name="quit" />
-	</TopMenuGroup>
-	<TopMenuGroup text="Edit">
-		<TopMenuCommand name="editcut" />
-		<TopMenuCommand name="editcopy" />
-		<TopMenuCommand name="editpaste" />
-	</TopMenuGroup>
-	<TopMenuGroup text="Options">
-		<TopMenuCommand name="add" />
-		<TopMenuCommand name="update" />
-		<TopMenuCommand name="delete" />
-	</TopMenuGroup>
+  <TopMenuGroup text="File">
+    <TopMenuCommand name="find"/>
+    <TopMenuCommand name="accept"/>
+    <TopMenuCommand name="cancel"/>
+    <TopMenuSeparator/>
+  	<TopMenuGroup text="Navigation">
+				<TopMenuCommand name="next"/>
+				<TopMenuCommand name="previous"/>
+		</TopMenuGroup>
+    <TopMenuSeparator/>
+    <TopMenuCommand name="quit" />
+  </TopMenuGroup>
+  <TopMenuGroup text="Edit">
+    <TopMenuCommand name="editcut"/>
+    <TopMenuCommand name="editcopy"/>
+    <TopMenuCommand name="editpaste"/>
+  </TopMenuGroup>
+  <TopMenuGroup text="Options">
+    <TopMenuCommand name="add" />
+    <TopMenuCommand name="delete" />
+    <TopMenuCommand name="update" />
+  </TopMenuGroup>
+  <TopMenuGroup text="Help">
+    <TopMenuCommand name="help" text="Help" image="quest"/>
+  </TopMenuGroup>
 </TopMenu>
