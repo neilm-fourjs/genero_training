@@ -1,21 +1,29 @@
 SCHEMA custdemo
 
-LAYOUT (TEXT=%"Store Details")
+LAYOUT (TEXT=%"Store Details", STYLE="main")
+VBOX
 GRID
 {
- [lsid  ][f01  : :lnam:f02                 ]
-
-<G g1                                       >
- [ladd  ][f03                 ]
-         [f04                 ]
- [lcit  ][f05             ]
- [lstt  ][f6:     :lzip:f07   ]
- [""]
- [lcon  ][f08                              ]
- [lpho  ][f09                ]
- [lcre  ][f10                ]
+<G ""                                     >
+ [lsid|f01  ]
+ [lnam|f02                               ]
+<                                         >
+}
+END -- GRID
+GRID
+{
+<G g1                                     >
+ [ladd|f03                 ]
+      [f04                 ]
+ [lcit|f05             ]
+ [lstt|f6               : :lzip:f07   ]
+ [lcon|f08                            ]
+ [lpho|f09                ]
+      [""]
+ [lcre|f10                ]
 }   
 END -- GRID
+END -- VBOX
 
 TABLES   
 customer
@@ -23,10 +31,10 @@ customer
 ATTRIBUTES
 f01 = customer.store_num, REQUIRED, COMMENT = %"This is the co-op store number";
 
-GROUP g1 : g1, TEXT=%"Details",GRIDCHILDRENINPARENT;
+GROUP g1 : g1, TEXT=%"Details:",GRIDCHILDRENINPARENT, STYLE="small";
 
 LABEL lsid : lsid , TEXT=%"Store #:",   JUSTIFY=RIGHT;
-LABEL lnam : lnam , TEXT=%"Name:",      JUSTIFY=RIGHT;
+LABEL lnam : lnam , TEXT=%"Name:",      JUSTIFY=RIGHT; --,STYLE="big";
 LABEL ladd : ladd , TEXT=%"Address:",   JUSTIFY=RIGHT;
 LABEL lcit : lcit , TEXT=%"City:",      JUSTIFY=RIGHT;
 LABEL lstt : lstt , TEXT=%"State:",     JUSTIFY=RIGHT;
@@ -35,11 +43,11 @@ LABEL lcon : lcon , TEXT=%"Contact:",   JUSTIFY=RIGHT;
 LABEL lpho : lpho , TEXT=%"Phone:",     JUSTIFY=RIGHT;
 LABEL lcre : lcre , TEXT=%"Created:",   JUSTIFY=RIGHT;
 
-f02 = customer.store_name;
+f02 = customer.store_name,STYLE="big red";
 f03 = customer.addr;
 f04 = customer.addr2;
 f05 = customer.city;
-COMBOBOX f6 = customer.state, ITEMS=("IL","IA","WI");
+COMBOBOX f6 = customer.state, INITIALIZER=set_combo_list; -- ITEMS=("IL","IA","WI");
 f07 = customer.zipcode;
 f08 = customer.contact_name;
 f09 = customer.phone;

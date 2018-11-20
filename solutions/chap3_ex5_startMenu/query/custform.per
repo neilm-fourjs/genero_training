@@ -1,22 +1,29 @@
 SCHEMA custdemo
 
 LAYOUT (TEXT=%"Store Details", STYLE="buttonsbottom")
+VBOX
 GRID
 {
- [lsid  ][f01  ]
- [lnam  ][f02                             ]
-
-<G g1                                       >
- [ladd  ][f03                 ]
-         [f04                 ]
- [lcit  ][f05             ]
- [lstt  ][f6:     :lzip:f07   ]
- [""]
- [lcon  ][f08                              ]
- [lpho  ][f09                ]
- [lcre  ][f10                ]
+<G ""                                     >
+ [lsid|f01  ]
+ [lnam|f02                               ]
+<                                         >
+}
+END -- GRID
+GRID
+{
+<G g1                                     >
+ [ladd|f03                 ]
+      [f04                 ]
+ [lcit|f05             ]
+ [lstt|f6               : :lzip:f07   ]
+ [lcon|f08                            ]
+ [lpho|f09                ]
+      [""]
+ [lcre|f10                ]
 }   
 END -- GRID
+END -- VBOX
 
 TABLES   
 customer
@@ -24,10 +31,10 @@ customer
 ATTRIBUTES
 f01 = customer.store_num, REQUIRED, COMMENT = %"This is the co-op store number";
 
-GROUP g1 : g1, TEXT=%"Details",GRIDCHILDRENINPARENT, STYLE="small";
+GROUP g1 : g1, TEXT=%"Details:",GRIDCHILDRENINPARENT, STYLE="small";
 
 LABEL lsid : lsid , TEXT=%"Store #:",   JUSTIFY=RIGHT;
-LABEL lnam : lnam , TEXT=%"Name:",      JUSTIFY=RIGHT,STYLE="big";
+LABEL lnam : lnam , TEXT=%"Name:",      JUSTIFY=RIGHT; --,STYLE="big";
 LABEL ladd : ladd , TEXT=%"Address:",   JUSTIFY=RIGHT;
 LABEL lcit : lcit , TEXT=%"City:",      JUSTIFY=RIGHT;
 LABEL lstt : lstt , TEXT=%"State:",     JUSTIFY=RIGHT;
