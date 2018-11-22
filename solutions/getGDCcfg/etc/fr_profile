@@ -1,0 +1,5 @@
+
+fglrun.localization.file.count = 2
+
+fglrun.localization.file.1.name = "fr_actions"
+fglrun.localization.file.2.name = "fr_getgdccfg"

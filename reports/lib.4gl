@@ -1,8 +1,9 @@
+&include "schema.inc"
 
 FUNCTION db_connect()
 	DEFINE l_db VARCHAR(30)
 
-	LET l_db = "custdemo"
+	LET l_db = C_DBNAME
 	TRY
 		CONNECT TO l_db
 	CATCH

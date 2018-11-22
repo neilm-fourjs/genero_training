@@ -1,0 +1,4 @@
+
+#fglrun.localization.file.count = 2
+#fglrun.localization.file.1.name = "mydef"
+#fglrun.localization.file.2.name = "actions"

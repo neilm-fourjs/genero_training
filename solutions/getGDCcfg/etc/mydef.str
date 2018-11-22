@@ -1,0 +1,14 @@
+
+"fgl.helpViewer.title"    = "Help"
+"fgl.helpViewer.screen"   = "Screen"
+"fgl.helpViewer.nextpage" = "Displays the next page of Help text."
+"fgl.helpViewer.resume"   = "Resume"
+"fgl.helpViewer.finish"   = "Ends this Help session."
+"fgl.helpViewer.endmsg"   = "You have reached the end of this help text. Press RETURN to continue."
+
+"fgl.reportViewer.title"    = "Report"
+"fgl.reportViewer.prevPage" = "Prev Page"
+"fgl.reportViewer.nextPage" = "Next Page"
+"fgl.reportViewer.cancel"   = "Stop"
+"fgl.reportViewer.page"     = "Page:"
+

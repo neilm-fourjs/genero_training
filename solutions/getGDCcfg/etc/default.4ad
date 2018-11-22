@@ -1,0 +1,46 @@
+<ActionDefaultList>
+
+  <ActionDefault name="accept"    text="OK"     image="ok2"     acceleratorName="Return" acceleratorName2="Enter" ><LStr text="action.accept"/></ActionDefault>
+  <ActionDefault name="cancel"    text="Cancel" image="cancel2" acceleratorName="Escape" ><LStr text="action.cancel"/></ActionDefault>
+  <ActionDefault name="insert"    text="Insert" image="new2"    acceleratorName="F3" ><LStr text="action.insert"/></ActionDefault>
+  <ActionDefault name="append"    text="Append"    acceleratorName="Control-F3" ><LStr text="action.append"/></ActionDefault>
+  <ActionDefault name="delete"    text="Delete" image="delete2" acceleratorName="F4" ><LStr text="action.delete"/></ActionDefault>
+  <ActionDefault name="help"      text="Help"   image="help"    acceleratorName="F1" ><LStr text="action.help"/></ActionDefault>
+  <ActionDefault name="about"     text="about"  image="about"   acceleratorName="Shift-F1" ><LStr text="action.about"/></ActionDefault>
+  <ActionDefault name="close"     text="Close"                  acceleratorName="Control-F4" ><LStr text="action.close"/></ActionDefault>
+
+  <ActionDefault name="next"      text="Next"     image="next2"   comment="Next record" ><LStr text="action.next"/></ActionDefault>
+  <ActionDefault name="previous"  text="Previous" image="prev2"    comment="Previous record" ><LStr text="action.previous"/></ActionDefault>
+  <ActionDefault name="first"     text="First"    image="gobegin"  comment="First record" ><LStr text="action.first"/></ActionDefault>
+  <ActionDefault name="last"      text="Last"     image="goend"    comment="Last record" ><LStr text="action.last"/></ActionDefault>
+  <ActionDefault name="print"     text="Print"    image="printer"  comment="Print" ><LStr text="action.print"/></ActionDefault>
+  <ActionDefault name="find"      text="Find"     image="find"     comment="Search" ><LStr text="action.find"/></ActionDefault>
+
+  <ActionDefault name="editcopy"    text="Copy"            image="copy"    comment="Copy"     acceleratorName="Control-C" ><LStr text="action."/></ActionDefault>
+  <ActionDefault name="editcut"     text="Cut"             image="cut"     comment="Cut"      acceleratorName="Control-X" ><LStr text="action."/></ActionDefault>
+  <ActionDefault name="editpaste"   text="Paste"           image="paste"   comment="Paste"    acceleratorName="Control-V" ><LStr text="action."/></ActionDefault>
+  <ActionDefault name="nextfield"   text="Next Field"      image=""        comment=""         acceleratorName="Tab"><LStr text="action."/></ActionDefault>
+  <ActionDefault name="prevfield"   text="Previous Field"  image=""        comment=""         acceleratorName="Shift-Tab"><LStr text="action."/></ActionDefault>
+  <ActionDefault name="nextrow"     text="Next"            image="next2"   comment=""         acceleratorName="Down"><LStr text="action."/></ActionDefault>
+  <ActionDefault name="prevrow"     text="Previous"        image="prev2"   comment=""         acceleratorName="Up"><LStr text="action."/></ActionDefault>
+  <ActionDefault name="firstrow"    text="First"           image="gobegin" comment=""         acceleratorName="Home"><LStr text="action."/></ActionDefault>
+  <ActionDefault name="lastrow"     text="Last"            image="goend"   comment=""         acceleratorName="End"><LStr text="action."/></ActionDefault>
+  <ActionDefault name="nextpage"    text="Next Page"       image=""        comment=""         acceleratorName="Next"><LStr text="action."/></ActionDefault>
+  <ActionDefault name="prevpage"    text="Previous Page"   image=""        comment=""         acceleratorName="Prior"><LStr text="action."/></ActionDefault>
+
+  <ActionDefault name="helpscreen"       acceleratorName="Return"><LStr text="action."/></ActionDefault>
+  <ActionDefault name="helpresume"       acceleratorName="Escape"><LStr text="action."/></ActionDefault>
+  <ActionDefault name="reportnextpage"   acceleratorName="Return"><LStr text="action."/></ActionDefault>
+
+  <ActionDefault name="fileopen" text="Open" comment="Browse for a file"   image="open2"   acceleratorName="F2">
+    <LStr text="action.fileopen" comment="comment.fileopen"/></ActionDefault>
+  <ActionDefault name="exit"     text="Exit" comment="Exit Program"    image="exit2"   acceleratorName="Escape">
+    <LStr text="action.exit" comment="comment.exit"/></ActionDefault>
+  <ActionDefault name="details"  text="Details" comment="See the details" image="switch" acceleratorName="F5">
+    <LStr text="action.details" comment="comment.details"/></ActionDefault>
+  <ActionDefault name="replace"  text="Replace" comment="Replace the file" image="ok2">
+    <LStr text="action.replace" comment="comment.replace"/></ActionDefault>
+
+  <ActionDefault name="hello" text="Hello" image="smiley"  acceleratorName="f5"/>
+  <ActionDefault name="save" text="Save" image="savefile"  acceleratorName="f5"/>
+</ActionDefaultList>

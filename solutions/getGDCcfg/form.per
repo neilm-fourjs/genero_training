@@ -1,0 +1,88 @@
+
+TOPMENU
+	GROUP file (TEXT=%"File")
+		COMMAND fileopen
+		SEPARATOR
+		COMMAND exit
+	END -- GROUP
+	GROUP edit (TEXT=%"Edit")
+		COMMAND editcopy
+		COMMAND editcut
+		COMMAND editpaste
+	END -- GROUP
+	GROUP val (TEXT=%"Validation")
+		COMMAND accept
+		COMMAND cancel
+	END -- GROUP
+	GROUP det (TEXT=%"Details")
+		COMMAND  details
+	END -- GROUP
+	GROUP help (TEXT=%"Help")
+		COMMAND  about
+	END -- GROUP
+END -- TOPMENU
+
+TOOLBAR ( BUTTONTEXTHIDDEN )
+		ITEM exit
+		SEPARATOR
+		ITEM accept
+		ITEM cancel
+		SEPARATOR
+		ITEM prevrow
+		ITEM nextrow
+		SEPARATOR
+		ITEM fileopen
+		ITEM details
+		SEPARATOR
+		ITEM about
+END -- TOOLBAR
+
+LAYOUT  ( TEXT=%"GDC Configuration", STYLE="mine", VERSION="0.2" )
+GRID
+{
+<G grp1                                                             >
+ [l001|n001                                                        ]
+ [l002|n002                                                        ]
+
+<T apps                                                             >
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+ [img|f001         |f002      |f003   |f004     |f005              ]
+}
+END -- GRID
+END -- LAYOUT
+
+
+ATTRIBUTES
+GROUP grp1 : grp1, TEXT=%"Details";
+
+LABEL l001 : l_file_rmt,TEXT=%"Remote File:", JUSTIFY=RIGHT,STYLE="bold";
+BUTTONEDIT  n001 = FORMONLY.m_file_remote, SCROLL, ACTION=fileopen;
+
+LABEL l002 : l_file_lcl,TEXT=%"Local File:";
+EDIT  n002 = FORMONLY.m_file_local;
+
+TABLE apps : apps, DOUBLECLICK=details;
+
+IMAGE img  = FORMONLY.f1,TITLE=%"Icon";
+EDIT  f001 = FORMONLY.f2,TITLE=%"Name";
+EDIT  f002 = FORMONLY.f3,TITLE=%"Host";
+EDIT  f003 = FORMONLY.type,TITLE=%"Type";
+EDIT  f004 = FORMONLY.user,TITLE=%"User";
+EDIT  f005 = FORMONLY.command,TITLE=%"Command";
+END 
+
+INSTRUCTIONS
+SCREEN RECORD arr ( f1 THRU command )
+END
+

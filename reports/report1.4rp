@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report:Report xmlns:rtl="http://www.4js.com/2004/RTL" xmlns:report="http://www.4js.com/2007/REPORT" xmlns="http://www.4js.com/2004/PXML" gstVersion="30a09" version="6.00">
+    <report:Settings RWPageWidth="letterwidth" RWPageLength="letterlength" RWLeftMargin="0.5inch" RWTopMargin="0.5inch" RWRightMargin="0.5inch" RWBottomMargin="0.5inch">
+        <report:FormatList>
+            <report:Format-SVG/>
+            <report:Format-PDF/>
+            <report:Format-image/>
+        </report:FormatList>
+    </report:Settings>
+    <report:Data RWDataLocation="report3.rdd" RWFglReportName="report1"/>
+    <report:Conflicts/>
+    <rtl:stylesheet>
+        <PXML>
+            <rtl:match name="Report" nameConstraint="Report" minOccurs="1" maxOccurs="1">
+                <MINIPAGE name="Page Root" width="max" length="max">
+                    <LAYOUTNODE name="Page Header" width="max" length="min" bgColor="#d6e9ef" port="anyPageHeader">
+                        <MINIPAGE name="StripeLayouter3" width="min" length="max" layoutDirection="leftToRight">
+                            <rtl:input-variable name="l_head" type="FGLString" expectedLocation="expectedHere"/>
+                            <WORDBOX name="Report Title" x="0" y="max/2" anchorX="0" anchorY="0.5" alignment="baseline" fontSize="25" baselineType="leftleft" floatingBehavior="enclosed" text="{{l_head}}"/>
+                            <PAGENOBOX name="PageNoBox" x="1.23857" y="max" anchorX="0" anchorY="1" alignment="baseline" baselineType="leftleft" floatingBehavior="enclosed" textAlignment="right"/>
+                        </MINIPAGE>
+                        <MINIPAGE name="Table Header" class="grwTableHeader" width="min" length="max" layoutDirection="leftToRight">
+                            <WORDBOX name="Spacer" alignment="baseline" baselineType="leftleft" port="itemSeparator" text=" "/>
+                            <WORDBOX name="l_stk.stock_code Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Stock Code&quot;.translate()}&quot;),width(&quot;M&quot;)*8)}" floatingBehavior="enclosed" text="Stock Code" localizeText="true"/>
+                            <WORDBOX name="l_stk.description Title" class="grwTableStringColumnTitle" width="{max(width(&quot;{&quot;Description&quot;.translate()}&quot;),width(&quot;M&quot;)*30)}" floatingBehavior="enclosed" text="Description" localizeText="true"/>
+                        </MINIPAGE>
+                        <MINIPAGE name="Separator" width="1" length="max" bgColor="#000000" layoutDirection="leftToRight"/>
+                    </LAYOUTNODE>
+                    <rtl:match name="Group stock_cat" nameConstraint="Group" minOccurs="0" maxOccurs="unbounded">
+                        <LAYOUTNODE name="LayoutNode" width="min" length="max" bgColor="#f9ffdc" layoutDirection="leftToRight" floatingBehavior="enclosed" paddingTopWidth="5" paddingBottomWidth="1" borderWidth="1" borderBottomStyle="solid">
+                            <rtl:input-variable name="l_stk.stock_cat" type="FGLString" expectedLocation="expectedAhead"/>
+                            <WORDBOX name="l_stk.stock_cat Value" class="grwStringValue" width="{max(width(&quot;{&quot;Stock Cat&quot;.translate()}&quot;),width(&quot;M&quot;)*10)}" floatingBehavior="enclosed" text="{{&quot;Category:&quot;+l_stk.stock_cat}}" borderWidth="1"/>
+                        </LAYOUTNODE>
+                        <rtl:match name="OnEveryRow" nameConstraint="OnEveryRow" minOccurs="0" maxOccurs="unbounded">
+                            <rtl:input-variable name="l_row" type="FGLNumeric" expectedLocation="expectedHere"/>
+                            <MINIPAGE name="Table Row" class="grwTableRow" width="min" length="max" bgColor="{{l_row%2&gt;0?Color.fromRGBA(20,200,20,50):Color.WHITE}}" layoutDirection="leftToRight">
+                                <WORDBOX name="Spacer_1" alignment="baseline" baselineType="leftleft" port="itemSeparator" text=" "/>
+                                <rtl:input-variable name="l_stk.stock_code" type="FGLString" expectedLocation="expectedHere"/>
+                                <WORDBOX name="l_stk.stock_code Value" class="grwStringValue" width="{max(width(&quot;{&quot;Stock Code&quot;.translate()}&quot;),width(&quot;M&quot;)*8)}" floatingBehavior="enclosed" text="{{l_stk.stock_code}}"/>
+                                <rtl:input-variable name="l_stk.description" type="FGLString" expectedLocation="expectedHere"/>
+                                <WORDBOX name="l_stk.description Value" class="grwStringValue" width="{max(width(&quot;{&quot;Description&quot;.translate()}&quot;),width(&quot;M&quot;)*30)}" floatingBehavior="enclosed" text="{{l_stk.description}}"/>
+                            </MINIPAGE>
+                        </rtl:match>
+                    </rtl:match>
+                </MINIPAGE>
+            </rtl:match>
+        </PXML>
+    </rtl:stylesheet>
+</report:Report>

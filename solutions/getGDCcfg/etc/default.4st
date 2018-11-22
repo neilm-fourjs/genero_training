@@ -1,0 +1,76 @@
+<StyleList>
+	<Style name="*:inactive">
+		 <StyleAttribute name="backgroundColor" value="#E0E0FF"/>
+	</Style>
+	<Style name="*">
+		 <StyleAttribute name='ontFamily' value='"Times New Roman",Times,serif'/>
+		 <StyleAttribute name='fontFamily' value='Arial'/>
+     <StyleAttribute name="fontSize" value="14pt"/>
+	</Style>
+	<Style name=".logo">
+     <StyleAttribute name="border" value="none"/>
+     <StyleAttribute name="alignment" value="horizontalCenter"/>
+	</Style>
+	<Style name="Label">
+     <StyleAttribute name="fontWeight" value="bold"/>
+	</Style>
+	<Style name="Label.html">
+     <StyleAttribute name="textFormat" value="html"/>
+	</Style>
+	<Style name="Table:odd">
+		 <StyleAttribute name="backgroundColor" value="#E5E5FF"/>
+	</Style>
+	<Style name="Table:even">
+		 <StyleAttribute name="backgroundColor" value="#FFFFFF"/>
+	</Style>
+	<Style name="Table.water">
+		 <StyleAttribute name="backgroundImage" value="fourjs_watermark"/>
+	</Style>
+  <Style name="ToolBar">
+		 <StyleAttribute name="backgroundColor" value="#B5B5EF"/>
+	</Style>
+  <Style name="Window">
+     <StyleAttribute name="windowType" value="normal" />
+		 <StyleAttribute name="backgroundColor" value="#B5B5EF"/>
+  </Style>
+  <Style name="Window.mine">
+     <StyleAttribute name="windowType" value="normal" />
+     <StyleAttribute name="actionPanelPosition" value="none" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="toolBarPosition" value="left" />
+  </Style>
+  <Style name="Window.main">
+     <StyleAttribute name="windowType" value="normal" />
+     <StyleAttribute name="startMenuPosition" value="menu" />
+  </Style>
+  <Style name="Window.dialog">
+     <StyleAttribute name="fontSize" value="14pt"/>
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="sizable" value="no" />
+     <StyleAttribute name="position" value="center" />
+     <StyleAttribute name="actionPanelPosition" value="bottom" />
+     <StyleAttribute name="ringMenuPosition" value="bottom" />
+     <StyleAttribute name="toolBarPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+  </Style>
+  <Style name="Window.naked">
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="border" value="tool" />
+     <StyleAttribute name="actionPanelPosition" value="none" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="position" value="center" />
+     <StyleAttribute name="toolBarPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+  </Style>
+  <Style name="Window.viewer">
+     <StyleAttribute name="windowType" value="modal" />
+     <StyleAttribute name="windowSystemMenu" value="no" />
+     <StyleAttribute name="windowOptionMinimize" value="no" />
+     <StyleAttribute name="windowOptionMaximize" value="no" />
+     <StyleAttribute name="sizable" value="yes" />
+     <StyleAttribute name="actionPanelPosition" value="none" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="toolBarPosition" value="none" />
+     <StyleAttribute name="statusBarType" value="none" />
+  </Style>
+</StyleList>

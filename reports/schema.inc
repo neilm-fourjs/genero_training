@@ -1,0 +1,4 @@
+
+SCHEMA njm_demo310
+
+CONSTANT C_DBNAME="njm_demo310"
