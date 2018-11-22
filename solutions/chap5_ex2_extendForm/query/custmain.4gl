@@ -24,21 +24,12 @@ MAIN
 	DISPLAY FORM f}
 
 	MENU
-		ON ACTION close
-			EXIT MENU
+		BEFORE MENU
+			CALL set_actions( DIALOG, FALSE )
 
-		ON ACTION hide
-			LET l_hide = NOT l_hide
-			CALL hide_field( "customer.contact_name", "lcon", l_hide)
-
-		ON ACTION labs
-			LET l_labs = NOT l_labs
-			CALL change_labels( IIF(l_labs,"darkred","darkblue") )
-
-		ON ACTION ext CALL extend_form( DIALOG.getForm().getNode() )
-
-		ON ACTION find 
+		ON ACTION find
 			LET query_ok = query_cust()
+			CALL set_actions( DIALOG, query_ok )
 
 		ON ACTION previous
 			IF query_ok THEN
@@ -64,6 +55,20 @@ MAIN
 			IF inpupd_cust("U") THEN
 				CALL update_cust()
 			END IF
+
+		ON ACTION hide
+			LET l_hide = NOT l_hide
+			CALL hide_field( "customer.contact_name", "lcon", l_hide)
+
+		ON ACTION labs
+			LET l_labs = NOT l_labs
+			CALL change_labels( IIF(l_labs,"darkred","darkblue") )
+
+		ON ACTION ext CALL extend_form( DIALOG.getForm().getNode() )
+
+		ON ACTION close
+			EXIT MENU
+
 		ON ACTION quit 
 			EXIT MENU
 	END MENU

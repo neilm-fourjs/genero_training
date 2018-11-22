@@ -1,5 +1,7 @@
 # Automatic Makefile made by make4js by N.J.M.
 
+export FGLDBPATH=../etc
+
 fgl_obj1 =  \
 	 custmain.$(4GLOBJ) \
 	 custquery.$(4GLOBJ) \

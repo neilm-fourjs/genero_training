@@ -23,7 +23,7 @@ MAIN
 
 	MENU
 		BEFORE MENU
-			CALL set_actions( DIALOG, FALSE  )
+			CALL set_actions( DIALOG, FALSE )
 
 		ON ACTION find 
 			LET query_ok = query_cust()

@@ -27,9 +27,9 @@ FUNCTION hide_field( l_fld STRING, l_lab STRING, l_hide BOOLEAN )
 END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION set_actions( d ui.Dialog, l_tf BOOLEAN )
-  CALL d.setActionActive("next",l_tf)
-  CALL d.setActionActive("previous",l_tf)
-  CALL d.setActionActive("update",l_tf)
-  CALL d.setActionActive("delete",l_tf)
+	CALL d.setActionActive("next",l_tf)
+	CALL d.setActionActive("previous",l_tf)
+	CALL d.setActionActive("update",l_tf)
+	CALL d.setActionActive("delete",l_tf)
 END FUNCTION
 --------------------------------------------------------------------------------

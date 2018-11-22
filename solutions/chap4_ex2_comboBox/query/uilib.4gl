@@ -10,7 +10,7 @@ FUNCTION ui_init()
 
 END FUNCTION
 --------------------------------------------------------------------------------
-FUNCTION cb_init( l_cb ui.Combobox )
+FUNCTION set_combo_list( l_cb ui.Combobox )
 	DEFINE l_state RECORD LIKE state.*
 	DECLARE state_cur CURSOR FOR SELECT * FROM state
 	FOREACH state_cur INTO l_state.*
