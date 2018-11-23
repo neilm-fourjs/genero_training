@@ -63,7 +63,7 @@
   </Settings>
   <LanguageList version="1.0"/>
   <PlatformList version="1.0"/>
-  <Group label="Solutions" language="Genero">
+  <Group environment="value:DBPATH=$(ProjectDir)/../db,value:FGLDBPATH=$(ProjectDir)/../etc,value:FGLPROFILE=$(ProjectDir)/../etc/fglprofile" label="Solutions" language="Genero">
     <Application binaryName="chap2_ex1" dependencies="14000,1986" id="18736" label="chap2_ex1" targetDirectory="$(ProjectDir)/chap2_ex1/query">
       <File filePath="chap2_ex1/query/custform.per"/>
       <File filePath="chap2_ex1/query/custmain.4gl"/>
