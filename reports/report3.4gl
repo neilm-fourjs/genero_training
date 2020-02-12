@@ -11,7 +11,7 @@ MAIN
 	CALL db_connect()
 	CALL lib_rptGre.init_report(132)
 
-	DECLARE cur CURSOR FOR SELECT * FROM stock,stock_cat WHERE stock.stock_cat = stock_cat.catid
+	DECLARE cur CURSOR FOR SELECT * FROM stock,stock_cat WHERE stock.stock_cat = stock_cat.stock_cat
 		ORDER BY stock.stock_cat, stock.description
 	FOREACH cur INTO l_stk.*, l_stkcat.*
 		IF lib_rptGre.m_rows = 0 THEN

@@ -87,7 +87,11 @@ FUNCTION chk()
 	LET cnt = NULL
 	SELECT COUNT(*) INTO cnt FROM stock
 	DISPLAY 'Stock    :',cnt
-	
+		
+	LET cnt = NULL
+	SELECT COUNT(*) INTO cnt FROM stock_cat
+	DISPLAY 'Stock Cat:',cnt
+
 	LET cnt = NULL
 	SELECT COUNT(*) INTO cnt FROM items
 	DISPLAY 'Items    :',cnt
@@ -105,6 +109,7 @@ FUNCTION drop()
 	CALL do_it('DROP TABLE orders');
 	CALL do_it('DROP TABLE factory');
 	CALL do_it('DROP TABLE stock');
+	CALL do_it('DROP TABLE stock_cat');
 	CALL do_it('DROP TABLE items');
 	CALL do_it('DROP TABLE state');
 	
@@ -146,6 +151,7 @@ FUNCTION create()
 	
 	CALL do_it('CREATE TABLE stock(
 	    stock_num     INTEGER NOT NULL,
+			stock_cat			CHAR(2) NOT NULL,
 	    fac_code      CHAR(3) NOT NULL,
 	    description   CHAR(15) NOT NULL,
 	    reg_price     DECIMAL(8,2) NOT NULL,
@@ -153,6 +159,12 @@ FUNCTION create()
 	    price_updated DATE,
 	    unit          CHAR(4) NOT NULL,
 	    PRIMARY KEY (stock_num, fac_code)
+	);')
+
+	CALL do_it('CREATE TABLE stock_cat(
+	    stock_cat     CHAR(2) NOT NULL,
+	    description		CHAR(40) NOT NULL,
+	    PRIMARY KEY (stock_cat)
 	);')
 	
 	CALL do_it('CREATE TABLE items(
@@ -180,6 +192,7 @@ FUNCTION load()
 	CALL do_it('DELETE FROM items;')
 	CALL do_it('DELETE FROM orders;')
 	CALL do_it('DELETE FROM stock;')
+	CALL do_it('DELETE FROM stock_cat;')
 	CALL do_it('DELETE FROM factory;')
 	CALL do_it('DELETE FROM customer;')
 	CALL do_it('DELETE FROM state;')
@@ -239,9 +252,12 @@ FUNCTION load()
 	CALL do_it("INSERT INTO items VALUES(2,310,2,12.85);")
 
 	LET l_dte = TODAY
-	CALL do_it("INSERT INTO stock VALUES(456,"||c_quot||"ASC"||c_quot||","||c_quot||"lightbulbs"||c_quot||",5.55,5.0,"||c_quot||(l_dte USING c_dtefmt)||c_quot||","||c_quot||"ctn"||c_quot||");")
-	CALL do_it("INSERT INTO stock VALUES(310,"||c_quot||"ASC"||c_quot||","||c_quot||"sink stoppers"||c_quot||",12.85,11.57,"||c_quot||(l_dte USING c_dtefmt)||c_quot||","||c_quot||"grss"||c_quot||");")
-	CALL do_it("INSERT INTO stock VALUES(744,"||c_quot||"ASC"||c_quot||","||c_quot||"faucets"||c_quot||",250.95,225.86,"||c_quot||(l_dte USING c_dtefmt)||c_quot||","||c_quot||"6/bx"||c_quot||");")
+	CALL do_it("INSERT INTO stock VALUES(456,"||c_quot||"AA"||c_quot||","||c_quot||"ASC"||c_quot||","||c_quot||"lightbulbs"||c_quot||",5.55,5.0,"||c_quot||(l_dte USING c_dtefmt)||c_quot||","||c_quot||"ctn"||c_quot||");")
+	CALL do_it("INSERT INTO stock VALUES(310,"||c_quot||"BB"||c_quot||","||c_quot||"ASC"||c_quot||","||c_quot||"sink stoppers"||c_quot||",12.85,11.57,"||c_quot||(l_dte USING c_dtefmt)||c_quot||","||c_quot||"grss"||c_quot||");")
+	CALL do_it("INSERT INTO stock VALUES(744,"||c_quot||"BB"||c_quot||","||c_quot||"ASC"||c_quot||","||c_quot||"faucets"||c_quot||",250.95,225.86,"||c_quot||(l_dte USING c_dtefmt)||c_quot||","||c_quot||"6/bx"||c_quot||");")
+
+	CALL do_it("INSERT INTO stock_cat VALUES("||c_quot||"AA"||c_quot||","||c_quot||"Household"||c_quot||");")
+	CALL do_it("INSERT INTO stock_cat VALUES("||c_quot||"BB"||c_quot||","||c_quot||"Plumming"||c_quot||");")
 
 	CALL do_it("INSERT INTO factory VALUES("||c_quot||"ASC"||c_quot||","||c_quot||"Assoc. Std. Co."||c_quot||");")
 	CALL do_it("INSERT INTO factory VALUES("||c_quot||"PHL"||c_quot||","||c_quot||"Phelps Lighting"||c_quot||");")

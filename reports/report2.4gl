@@ -11,7 +11,7 @@ MAIN
 	CALL db_connect()
 	CALL lib_rptGre.init_report(80)
 
-	DECLARE cur CURSOR FOR SELECT * FROM stock,stock_cat WHERE stock.stock_cat = stock_cat.catid
+	DECLARE cur CURSOR FOR SELECT * FROM stock,stock_cat WHERE stock.stock_cat = stock_cat.stock_cat
 		ORDER BY stock.stock_cat, stock.description
 	FOREACH cur INTO l_stk.*, l_stkcat.*
 		IF lib_rptGre.m_rows = 0 THEN
@@ -56,17 +56,17 @@ REPORT report1( l_stk, l_stkcat )
 
 		BEFORE GROUP OF l_stk.stock_cat
 			SKIP TO TOP OF PAGE
-			PRINT "Category:",l_stkcat.cat_name
+			PRINT "Category:",l_stkcat.description
 			PRINT
 			PRINT "Stk Code Description"
 			PRINT lib_rptGre.hyphens()
 
 		AFTER GROUP OF l_stk.stock_cat
 			PRINT
-			PRINT GROUP COUNT(*), " Items in '"||(l_stkcat.cat_name CLIPPED)||"' category."
+			PRINT GROUP COUNT(*), " Items in '"||(l_stkcat.description CLIPPED)||"' category."
 
 		ON EVERY ROW
-			PRINT l_stk.stock_code," ",l_stk.description
+			PRINT l_stk.stock_num," ",l_stk.description
 
 		ON LAST ROW
 			PRINT
