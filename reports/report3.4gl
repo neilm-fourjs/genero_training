@@ -17,7 +17,7 @@ MAIN
 		IF lib_rptGre.m_rows = 0 THEN
 			LET lib_rptGre.m_rptStarted = TRUE
 
-			CALL lib_rptGre.set_dest("report1")
+			CALL lib_rptGre.set_dest("report3")
 
 			START REPORT report1 TO XML HANDLER lib_rptGre.m_gre
 		END IF
@@ -34,7 +34,7 @@ END MAIN
 REPORT report1( l_stk, l_stkcat )
 	DEFINE l_stk RECORD LIKE stock.*
 	DEFINE l_stkcat RECORD LIKE stock_cat.*
-	DEFINE l_head STRING
+	DEFINE l_head, l_desc STRING
 	DEFINE l_row,l_groupCount INTEGER
 	DEFINE l_date DATE
 
@@ -53,6 +53,8 @@ REPORT report1( l_stk, l_stkcat )
 
 		ON EVERY ROW
 			LET l_row = l_row + 1
-			PRINT l_row, l_stk.*, l_stkcat.*
+			--IF l_stk.stock_num = 744 THEN LET l_stk.description = NULL END IF
+			LET l_desc = l_stk.description CLIPPED
+			PRINT l_row, l_stk.*, l_desc, l_stkcat.*
 
 END REPORT
