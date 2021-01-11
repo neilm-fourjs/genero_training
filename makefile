@@ -1,12 +1,11 @@
-# Automatic Makefile made by make4js by N.J.M.
 
-fgl_obj1 = 
+components=query arrays orders
 
-fgl_frm1 = 
+all:: subdirs
 
-#depend::
-#	echo "making depends";  cd lib ; ./link_lib
-
-PRG1=genero_training.42r
+subdirs:: $(components)
+	@for component in $^ ; do  \
+		$(MAKE) -C $$component all; \
+	done
 
 include ./etc/Make_fjs.inc
