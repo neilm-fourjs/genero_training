@@ -8,18 +8,18 @@ MAIN
 	TRY
 		CONNECT TO "custdemo"
 	CATCH
-		CALL fgl_winMessage("Error","Failed to connect to database!\n"||SQLERRMESSAGE,"exclamation")
+		CALL fgl_winMessage("Error", "Failed to connect to database!\n" || SQLERRMESSAGE, "exclamation")
 		EXIT PROGRAM
 	END TRY
 
 	SET LOCK MODE TO WAIT 6
 	LET query_ok = FALSE
 
-	CLOSE WINDOW SCREEN
+	CLOSE WINDOW screen
 	OPEN WINDOW w1 WITH FORM "custform"
 
 	MENU
-		ON ACTION find 
+		ON ACTION find
 			LET query_ok = query_cust()
 
 		ON ACTION previous
@@ -49,13 +49,13 @@ MAIN
 				CALL update_cust()
 			END IF
 
-		ON ACTION quit 
+		ON ACTION quit
 			EXIT MENU
 		ON ACTION close
 			EXIT MENU
 
 	END MENU
-	
+
 	CLOSE WINDOW w1
- 
+
 END MAIN

@@ -1,0 +1,66 @@
+
+LAYOUT (TEXT="Action Defaults")
+HBOX
+TABLE
+{
+[a001         |a002        ]
+}
+END -- TABLE
+GRID
+{
+[l001|f001                  ]
+[l002|f002                  ]
+[l003|f003                  ]
+[l004|f004                  ]
+[l005|f005                  ]
+[l006|f006                  ]
+[l007|f007                  ]
+[l008|f008                  ]
+[l009|f009                  ]
+[l010|f010                  ]
+[l011|f011                  ]
+}
+END -- GRID
+END -- TABLE
+
+ATTRIBUTES
+-- table columns go here
+a001 = FORMONLY.col1, TITLE="Name", IMAGECOLUMN=col3;
+a002 = FORMONLY.col2, TITLE="Text";
+PHANTOM FORMONLY.col3;
+PHANTOM FORMONLY.col4;
+PHANTOM FORMONLY.col5;
+PHANTOM FORMONLY.col6;
+PHANTOM FORMONLY.col7;
+PHANTOM FORMONLY.col8;
+PHANTOM FORMONLY.col9;
+PHANTOM FORMONLY.col10;
+PHANTOM FORMONLY.col11;
+
+-- detail columns go here
+LABEL l001 : nam, TEXT="Name:", JUSTIFY=RIGHT;
+LABEL l002 : txt, TEXT="Text:", JUSTIFY=RIGHT;
+LABEL l003 : img, TEXT="Image:", JUSTIFY=RIGHT;
+LABEL l004 : cmt, TEXT="Comment:", JUSTIFY=RIGHT;
+LABEL l005 : ky1, TEXT="Accel Key 1:", JUSTIFY=RIGHT;
+LABEL l006 : ky2, TEXT="Accel Key 2:", JUSTIFY=RIGHT;
+LABEL l007 : ky3, TEXT="Accel Key 3:", JUSTIFY=RIGHT;
+LABEL l008 : ky4, TEXT="Accel Key 4:", JUSTIFY=RIGHT;
+LABEL l009 : dfv, TEXT="Default View:", JUSTIFY=RIGHT;
+LABEL l010 : cxt, TEXT="Context Menu:", JUSTIFY=RIGHT;
+LABEL l011 : val, TEXT="Validate:", JUSTIFY=RIGHT;
+
+f001 = FORMONLY.nam, NOT NULL, REQUIRED, DOWNSHIFT;
+f002 = FORMONLY.txt;
+f003 = FORMONLY.img;
+f004 = FORMONLY.cmt;
+f005 = FORMONLY.ky1;
+f006 = FORMONLY.ky2;
+f007 = FORMONLY.ky3;
+f008 = FORMONLY.ky4;
+f009 = FORMONLY.dfv; -- should be a combo ( "auto", "yes", "no" )
+f010 = FORMONLY.cxt; -- should be a combo ( "auto", "yes", "no" )
+f011 = FORMONLY.val; -- should be a combo ( NULL, "no" )
+
+INSTRUCTIONS
+SCREEN RECORD arr ( FORMONLY.col1 THRU FORMONLY.col11 )
