@@ -1,0 +1,6 @@
+"common.accept" = "OK"
+"common.cancel" = "Cancel"
+"common.quit" = "Quit"
+
+"action.text.add"="Insert"
+"action.comment.add"="Insert a record"

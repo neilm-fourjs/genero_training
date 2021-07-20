@@ -61,5 +61,4 @@ FUNCTION pageHeader(l_titl, l_pno)
 	LET l_rptTitle[x, x+l_titl.getLength() ] = l_titl
 	LET l_rptTitle[ m_pageWidth-2, m_pageWidth ] = (l_pno USING "&&&")
 	RETURN l_rptTitle
-
 END FUNCTION

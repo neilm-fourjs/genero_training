@@ -58,7 +58,7 @@ REPORT report1( l_stk, l_stkcat )
 			SKIP TO TOP OF PAGE
 			PRINT "Category:",l_stkcat.description
 			PRINT
-			PRINT "Stk Code Description"
+			PRINT "Stk Code", COLUMN 20, "Description"
 			PRINT lib_rpt.hyphens()
 
 		AFTER GROUP OF l_stk.stock_cat
@@ -66,7 +66,7 @@ REPORT report1( l_stk, l_stkcat )
 			PRINT GROUP COUNT(*), " Items in '"||(l_stkcat.description CLIPPED)||"' category."
 
 		ON EVERY ROW
-			PRINT l_stk.stock_num," ",l_stk.description
+			PRINT l_stk.stock_num, COLUMN 20,l_stk.description
 
 		ON LAST ROW
 			PRINT

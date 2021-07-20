@@ -37,7 +37,7 @@ LAYOUT ( TEXT="Orders", STYLE="main2" )
     [f08    |f09              |f10    |f11    |f12        |f13      ]
     [f08    |f09              |f10    |f11    |f12        |f13      ]
     [f08    |f09              |f10    |f11    |f12        |f13      ]
-                                                          [sum      ]
+                              [sumq   ]                   [sumt     ]
    }
   END
  END -- VBOX 
@@ -64,7 +64,12 @@ LABEL      f11 = stock.unit;
 LABEL      f12 = items.price;
 LABEL      f13 = formonly.line_total TYPE DECIMAL(9,2);
 EDIT       f14 = formonly.order_total TYPE DECIMAL(9,2), NOENTRY;
-AGGREGATE  sum = FORMONLY.total;   
+
+AGGREGATE sumq = FORMONLY.totalq,
+                  AGGREGATETEXT = "Totals:",
+                  AGGREGATETYPE = SUM;
+AGGREGATE sumt = FORMONLY.total;
+
 END
 
 INSTRUCTIONS

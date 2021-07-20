@@ -9,34 +9,37 @@ TOOLBAR
 	ITEM save
 END --
 
-LAYOUT (TEXT="Action Defaults", STYLE="main2")
+LAYOUT (TEXT="Action Defaults", STYLE="browser")
 VBOX
 GRID
 {
+<G ""                                                     >
 [l000|f000                                               ]
 }
 END -- GRID
-HBOX
-TABLE
+HBOX ( SPLITTER )
+TABLE ( STYLE="coloured big" )
 {
-[a001         |a002        ]
+[a001         |a002        |a003                         ]
 }
 END -- TABLE
+GROUP (TEXT="Action Details")
 GRID
 {
-[l001|f001                  ]
-[l002|f002                  ]
-[l003|f003                  ]
-[l004|f004                  ]
-[l005|f005                  ]
+[l001|f001           ]       [img2        ]
+[l002|f002                  ][            ]
+[l003|f003                  ][            ]
+[l004|f004                  ][            ]
+[l005|f005                  ][            ]
 [l006|f006                  ]
 [l007|f007                  ]
 [l008|f008                  ]
 [l009|f009                  ]
 [l010|f010                  ]
-[l011|f011                  ]
+[l011|f011]
 }
 END -- GRID
+END -- GROUP
 END -- HBOX
 END -- VBOX
 
@@ -45,7 +48,7 @@ ATTRIBUTES
 a001 = FORMONLY.col1, TITLE="Name", IMAGECOLUMN=col3;
 a002 = FORMONLY.col2, TITLE="Text";
 PHANTOM FORMONLY.col3;
-PHANTOM FORMONLY.col4;
+a003 = FORMONLY.col4, TITLE="Comment";
 PHANTOM FORMONLY.col5;
 PHANTOM FORMONLY.col6;
 PHANTOM FORMONLY.col7;
@@ -70,9 +73,10 @@ LABEL l011 : val, TEXT="Validate:", JUSTIFY=RIGHT;
 
 f000 = FORMONLY.filename;
 
-f001 = FORMONLY.nam, NOT NULL, REQUIRED, DOWNSHIFT;
+f001 = FORMONLY.nam, NOT NULL, REQUIRED, DOWNSHIFT, STYLE="vbig bold";
 f002 = FORMONLY.txt;
 BUTTONEDIT f003 = FORMONLY.img, IMAGE="fa-search", ACTION=imgs;
+IMAGE img2 = FORMONLY.img2, AUTOSCALE, STYLE="noborder";
 f004 = FORMONLY.cmt;
 f005 = FORMONLY.ky1;
 f006 = FORMONLY.ky2;

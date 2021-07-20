@@ -6,5 +6,8 @@ dbi.database.custdemo.source = "../db/custdemo.db"
 
 #dbi.database.spec.ifxemul.dblquotes =false
 
-#fglrun.localization.file.count = 1 
-#fglrun.localization.file.1.name = "test"
+#fglrun.localization.file.count = 2
+#fglrun.localization.file.1.name = "nl"
+#fglrun.localization.file.2.name = "nl_actions"
+
+gui.rendering = "universal"

@@ -20,10 +20,8 @@ MAIN
 			CASE lib_rptGre.m_dest
 				WHEN "S"
 					START REPORT report1 TO SCREEN
-				WHEN "F"
-					START REPORT report1 TO FILE lib_rptGre.m_fileName
 				OTHERWISE
-					START REPORT report1 TO PRINTER
+					START REPORT report1 TO FILE lib_rptGre.m_fileName
 			END CASE
 		END IF
 		LET lib_rptGre.m_rows = lib_rptGre.m_rows + 1
@@ -31,6 +29,7 @@ MAIN
 	END FOREACH
 	IF lib_rptGre.m_rptStarted THEN
 		FINISH REPORT report1
+		CALL lib_rptGre.finishReport()
 	END IF
 	DISPLAY "Program Finished."
 
@@ -58,7 +57,7 @@ REPORT report1( l_stk, l_stkcat )
 			SKIP TO TOP OF PAGE
 			PRINT "Category:",l_stkcat.description
 			PRINT
-			PRINT "Stk Code Description"
+			PRINT "Stk Code", COLUMN 20, "Description"
 			PRINT lib_rptGre.hyphens()
 
 		AFTER GROUP OF l_stk.stock_cat
@@ -66,7 +65,7 @@ REPORT report1( l_stk, l_stkcat )
 			PRINT GROUP COUNT(*), " Items in '"||(l_stkcat.description CLIPPED)||"' category."
 
 		ON EVERY ROW
-			PRINT l_stk.stock_num," ",l_stk.description
+			PRINT l_stk.stock_num, COLUMN 20,l_stk.description
 
 		ON LAST ROW
 			PRINT

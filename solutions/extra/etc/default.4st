@@ -10,6 +10,43 @@ Property of Four Js*
 -->
 
 <StyleList>
+	<!-- Custom Styles -->
+  <Style name=".big">
+     <StyleAttribute name="fontSize" value="1.4em" />
+  </Style>
+  <Style name=".vbig">
+     <StyleAttribute name="fontSize" value="1.8em" />
+  </Style>
+  <Style name=".bold">
+     <StyleAttribute name="fontWeight" value="bold" />
+  </Style>
+  <Style name=".noborder">
+     <StyleAttribute name="border" value="none" />
+  </Style>
+  <Style name="Table.coloured:even">
+     <StyleAttribute name="backgroundColor" value="#d5ebd6" />
+  </Style>
+  <Style name=".red">
+     <StyleAttribute name="textColor" value="red" />
+  </Style>
+  <Style name="Label">
+     <StyleAttribute name="textColor" value="darkblue" />
+     <StyleAttribute name="fontWeight" value="bold" />
+  </Style>
+  <Style name="Window.mystyle">
+     <StyleAttribute name="actionPanelPosition" value="bottom" />
+     <StyleAttribute name="ringMenuPosition" value="bottom" />
+     <StyleAttribute name="toolBarPosition" value="top" />
+	</Style>
+
+  <Style name="Window.browser">
+     <StyleAttribute name="windowType" value="normal" />
+     <StyleAttribute name="actionPanelPosition" value="none" />
+     <StyleAttribute name="ringMenuPosition" value="none" />
+     <StyleAttribute name="toolBarPosition" value="chrome" />
+  </Style>
+
+	<!-- Default Styles -->
   <Style name="Window">
      <StyleAttribute name="windowType" value="normal" />
   </Style>
