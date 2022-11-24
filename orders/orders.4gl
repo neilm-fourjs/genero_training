@@ -1,22 +1,23 @@
 SCHEMA custdemo
 
-DEFINE order_rec RECORD
-					store_num		LIKE orders.store_num,
-					store_name	LIKE customer.store_name,
-					order_num		LIKE orders.order_num,
-					order_date	LIKE orders.order_date,
-					fac_code		LIKE orders.fac_code,
-					ship_instr	LIKE orders.ship_instr,
-					promo				LIKE orders.promo
-				END RECORD,
-				arr_items DYNAMIC ARRAY OF RECORD
-					stock_num		LIKE items.stock_num,
-					description	LIKE stock.description,
-					quantity		LIKE items.quantity,
-					unit				LIKE stock.unit,
-					price				LIKE items.price,
-					line_total	DECIMAL(9,2)
-				END RECORD
+DEFINE
+	order_rec RECORD
+		store_num  LIKE orders.store_num,
+		store_name LIKE customer.store_name,
+		order_num  LIKE orders.order_num,
+		order_date LIKE orders.order_date,
+		fac_code   LIKE orders.fac_code,
+		ship_instr LIKE orders.ship_instr,
+		promo      LIKE orders.promo
+	END RECORD,
+	arr_items DYNAMIC ARRAY OF RECORD
+		stock_num   LIKE items.stock_num,
+		description LIKE stock.description,
+		quantity    LIKE items.quantity,
+		unit        LIKE stock.unit,
+		price       LIKE items.price,
+		line_total  DECIMAL(9, 2)
+	END RECORD
 
 CONSTANT msg01 = "You must query first"
 CONSTANT msg02 = "Enter search criteria"
@@ -38,27 +39,27 @@ MAIN
 
 	CONNECT TO "custdemo"
 	CLOSE WINDOW SCREEN
-	
+
 	OPEN WINDOW w1 WITH FORM "orderform"
 
 	MENU
 		BEFORE MENU
-			CALL setup_actions(DIALOG,FALSE,FALSE)
+			CALL setup_actions(DIALOG, FALSE, FALSE)
 		ON ACTION new
 			CLEAR FORM
 			LET query_ok = FALSE
 			CALL close_order()
 			LET has_order = order_new()
 			IF has_order THEN
-					CALL arr_items.clear()
-					CALL items_inpupd()
+				CALL arr_items.clear()
+				CALL items_inpupd()
 			END IF
-			CALL setup_actions(DIALOG,has_order,query_ok)
+			CALL setup_actions(DIALOG, has_order, query_ok)
 		ON ACTION find
 			CLEAR FORM
-			LET query_ok = order_query()
+			LET query_ok  = order_query()
 			LET has_order = query_ok
-			CALL setup_actions(DIALOG,has_order,query_ok)
+			CALL setup_actions(DIALOG, has_order, query_ok)
 		ON ACTION next
 			CALL order_fetch_rel(1)
 		ON ACTION previous
@@ -74,63 +75,55 @@ MAIN
 END MAIN
 --------------------------------------------------------------------------------
 FUNCTION setup_actions(d, has_order, query_ok)
-	DEFINE d ui.Dialog,
-				has_order, query_ok SMALLINT
-	CALL d.setActionActive("next",query_ok)
-	CALL d.setActionActive("previous",query_ok)
-	CALL d.setActionActive("getitems",has_order)
+	DEFINE
+		d                   ui.Dialog,
+		has_order, query_ok SMALLINT
+	CALL d.setActionActive("next", query_ok)
+	CALL d.setActionActive("previous", query_ok)
+	CALL d.setActionActive("getitems", has_order)
 END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION order_new()
-	DEFINE id INTEGER, name STRING
+	DEFINE
+		id   INTEGER,
+		name STRING
 
 	MESSAGE msg11
 
 	INITIALIZE order_rec.* TO NULL
-	SELECT MAX(order_num)+1 INTO order_rec.order_num
-		FROM orders
-	IF order_rec.order_num IS NULL
-	OR order_rec.order_num == 0 THEN
+	SELECT MAX(order_num) + 1 INTO order_rec.order_num FROM orders
+	IF order_rec.order_num IS NULL OR order_rec.order_num == 0 THEN
 		LET order_rec.order_num = 1
-	END IF 
+	END IF
 
 	LET int_flag = FALSE
-	INPUT BY NAME
-			order_rec.store_num, 
-			order_rec.store_name, 
-			order_rec.order_num, 
-			order_rec.order_date, 
-			order_rec.fac_code,
-			order_rec.ship_instr,
-			order_rec.promo
-		WITHOUT DEFAULTS
-		ATTRIBUTES(UNBUFFERED)
+	INPUT BY NAME order_rec.store_num, order_rec.store_name, order_rec.order_num, order_rec.order_date,
+			order_rec.fac_code, order_rec.ship_instr, order_rec.promo
+			WITHOUT DEFAULTS ATTRIBUTES(UNBUFFERED)
 
 		BEFORE INPUT
 			LET order_rec.order_date = TODAY
-			LET order_rec.fac_code = "ASC"
+			LET order_rec.fac_code   = "ASC"
 			LET order_rec.ship_instr = "FEDEX"
 
 		ON CHANGE store_num
-			SELECT store_name INTO order_rec.store_name
-				FROM customer
-				WHERE store_num = order_rec.store_num
+			SELECT store_name INTO order_rec.store_name FROM customer WHERE store_num = order_rec.store_num
 			IF (SQLCA.SQLCODE == NOTFOUND) THEN
-					ERROR msg12
-					NEXT FIELD store_num
+				ERROR msg12
+				NEXT FIELD store_num
 			END IF
 
 		ON ACTION zoom1
 			CALL display_custlist() RETURNING id, name
 			IF (id > 0) THEN
-					LET order_rec.store_num = id
-					LET order_rec.store_name = name
+				LET order_rec.store_num  = id
+				LET order_rec.store_name = name
 			END IF
 
 	END INPUT
 
 	IF (int_flag) THEN
-		LET int_flag=FALSE
+		LET int_flag = FALSE
 		CLEAR FORM
 		MESSAGE msg03
 		RETURN FALSE
@@ -138,27 +131,15 @@ FUNCTION order_new()
 
 	RETURN order_insert()
 
-END FUNCTION 
+END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION order_insert()
 
 	TRY
-		INSERT INTO orders (
-			store_num,
-			order_num,
-			order_date,
-			fac_code,
-			ship_instr,
-			promo
-		) VALUES (
-			order_rec.store_num,
-			order_rec.order_num,
-			order_rec.order_date,
-			order_rec.fac_code,
-			order_rec.ship_instr,
-			order_rec.promo
-		)
-	CATCH	
+		INSERT INTO orders(store_num, order_num, order_date, fac_code, ship_instr, promo)
+				VALUES(order_rec.store_num, order_rec.order_num, order_rec.order_date, order_rec.fac_code, order_rec.ship_instr,
+						order_rec.promo)
+	CATCH
 		CLEAR FORM
 		ERROR SQLERRMESSAGE
 		RETURN FALSE
@@ -170,67 +151,59 @@ FUNCTION order_insert()
 END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION order_query()
-	DEFINE where_clause STRING,
-				id INTEGER, name STRING
+	DEFINE
+		where_clause STRING,
+		id           INTEGER,
+		name         STRING
 
 	MESSAGE msg02
 
 	LET int_flag = FALSE
-	CONSTRUCT BY NAME where_clause ON 
-			orders.store_num, 
-			customer.store_name, 
-			orders.order_num, 
-			orders.order_date, 
-			orders.fac_code
+	CONSTRUCT BY NAME where_clause
+			ON orders.store_num, customer.store_name, orders.order_num, orders.order_date, orders.fac_code
 
 		ON ACTION zoom1
 			CALL display_custlist() RETURNING id, name
 			IF id > 0 THEN
-					DISPLAY id TO orders.store_num
-					DISPLAY name TO customer.store_name
+				DISPLAY id TO orders.store_num
+				DISPLAY name TO customer.store_name
 			END IF
 
 	END CONSTRUCT
 
 	IF (int_flag) THEN
-		LET int_flag=FALSE
+		LET int_flag = FALSE
 		CLEAR FORM
 		MESSAGE msg03
 		RETURN FALSE
 	END IF
-	
+
 	RETURN order_select(where_clause)
 
-END FUNCTION 
+END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION order_select(where_clause STRING)
 	DEFINE sql_text STRING
-	DEFINE l_cnt SMALLINT
-			
-	LET sql_text = "SELECT COUNT(*) "
-			|| "FROM orders, customer "
-			|| "WHERE orders.store_num = customer.store_num "
-			|| "AND " || where_clause
-	DECLARE order_cnts CURSOR FROM sql_text	
+	DEFINE l_cnt    SMALLINT
+
+	LET sql_text =
+			"SELECT COUNT(*) " || "FROM orders, customer " || "WHERE orders.store_num = customer.store_num " || "AND "
+					|| where_clause
+	DECLARE order_cnts CURSOR FROM sql_text
 	OPEN order_cnts
 	FETCH order_cnts INTO l_cnt
 	CLOSE order_cnts
-	MESSAGE l_cnt," Orders found."
-	IF l_cnt = 0 THEN RETURN FALSE END IF
+	MESSAGE l_cnt, " Orders found."
+	IF l_cnt = 0 THEN
+		RETURN FALSE
+	END IF
 
-	LET sql_text = "SELECT "
-			|| "orders.store_num, "
-			|| "customer.store_name, "
-			|| "orders.order_num, "
-			|| "orders.order_date, "
-			|| "orders.fac_code, "
-			|| "orders.ship_instr, "
-			|| "orders.promo "
-			|| "FROM orders, customer "
-			|| "WHERE orders.store_num = customer.store_num "
-			|| "AND " || where_clause
+	LET sql_text =
+			"SELECT " || "orders.store_num, " || "customer.store_name, " || "orders.order_num, " || "orders.order_date, "
+					|| "orders.fac_code, " || "orders.ship_instr, " || "orders.promo " || "FROM orders, customer "
+					|| "WHERE orders.store_num = customer.store_num " || "AND " || where_clause
 
-	DECLARE order_curs SCROLL CURSOR FROM sql_text	
+	DECLARE order_curs SCROLL CURSOR FROM sql_text
 	OPEN order_curs
 	IF (NOT order_fetch(1)) THEN
 		CLEAR FORM
@@ -257,7 +230,7 @@ FUNCTION order_fetch(p_fetch_flag)
 
 	DISPLAY BY NAME order_rec.*
 	CALL items_fetch()
-	RETURN TRUE		
+	RETURN TRUE
 
 END FUNCTION
 --------------------------------------------------------------------------------
@@ -270,34 +243,31 @@ FUNCTION close_order()
 END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION items_fetch()
-	DEFINE item_cnt INTEGER,
-				item_rec RECORD
-					stock_num		LIKE items.stock_num,
-					description	LIKE stock.description,
-					quantity		LIKE items.quantity,
-					unit				LIKE stock.unit,
-					price				LIKE items.price,
-					line_total	DECIMAL(9,2)
-				END RECORD
+	DEFINE
+		item_cnt INTEGER,
+		item_rec RECORD
+			stock_num   LIKE items.stock_num,
+			description LIKE stock.description,
+			quantity    LIKE items.quantity,
+			unit        LIKE stock.unit,
+			price       LIKE items.price,
+			line_total  DECIMAL(9, 2)
+		END RECORD
 
-	IF order_rec.order_num IS NULL THEN RETURN END IF
+	IF order_rec.order_num IS NULL THEN
+		RETURN
+	END IF
 
 	DECLARE items_curs CURSOR FOR
-		SELECT items.stock_num, 
-						stock.description, 
-						items.quantity, 
-						stock.unit, 
-						items.price,
-						items.price * items.quantity line_total
-				FROM items, stock
-			WHERE items.order_num = order_rec.order_num
-				AND items.stock_num = stock.stock_num
+			SELECT items.stock_num, stock.description, items.quantity, stock.unit, items.price,
+					items.price * items.quantity line_total
+					FROM items, stock WHERE items.order_num = order_rec.order_num AND items.stock_num = stock.stock_num
 
 	LET item_cnt = 0
 	CALL arr_items.clear()
 	FOREACH items_curs INTO item_rec.*
-			LET item_cnt = item_cnt + 1
-			LET arr_items[item_cnt].* = item_rec.*
+		LET item_cnt = item_cnt + 1
+		LET arr_items[item_cnt].* = item_rec.*
 	END FOREACH
 	FREE items_curs
 
@@ -308,9 +278,9 @@ END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION items_show()
 	DISPLAY ARRAY arr_items TO sa_items.*
-			BEFORE DISPLAY
-				EXIT DISPLAY
-	END DISPLAY 
+		BEFORE DISPLAY
+			EXIT DISPLAY
+	END DISPLAY
 END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION order_fetch_rel(p_fetch_flag)
@@ -328,22 +298,22 @@ FUNCTION order_fetch_rel(p_fetch_flag)
 END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION items_inpupd()
-	DEFINE opflag CHAR(1),
-				item_cnt, curr_pa SMALLINT,
-				id INTEGER
+	DEFINE
+		opflag            CHAR(1),
+		item_cnt, curr_pa SMALLINT,
+		id                INTEGER
 
 	LET opflag = "U"
 
 	LET item_cnt = arr_items.getLength()
-	INPUT ARRAY arr_items WITHOUT DEFAULTS FROM sa_items.*
-		ATTRIBUTE (UNBUFFERED, INSERT ROW = FALSE)
+	INPUT ARRAY arr_items WITHOUT DEFAULTS FROM sa_items.* ATTRIBUTE(UNBUFFERED, INSERT ROW = FALSE)
 
 		BEFORE ROW
-			LET curr_pa = ARR_CURR() 
-			LET opflag = "U"
+			LET curr_pa = ARR_CURR()
+			LET opflag  = "U"
 
 		BEFORE INSERT
-			LET opflag = "I"
+			LET opflag                      = "I"
 			LET arr_items[curr_pa].quantity = 1
 
 		AFTER INSERT
@@ -359,34 +329,33 @@ FUNCTION items_inpupd()
 
 		BEFORE FIELD stock_num
 			IF opflag = "U" THEN
-				NEXT FIELD quantity 
+				NEXT FIELD quantity
 			END IF
 
 		ON ACTION zoom2
 			LET id = display_stocklist()
 			IF id > 0 THEN
-					IF (NOT get_stock_info(curr_pa,id) ) THEN
-						LET arr_items[curr_pa].stock_num = NULL
-					ELSE
-						LET arr_items[curr_pa].stock_num = id
-					END IF
+				IF (NOT get_stock_info(curr_pa, id)) THEN
+					LET arr_items[curr_pa].stock_num = NULL
+				ELSE
+					LET arr_items[curr_pa].stock_num = id
+				END IF
 			END IF
 
 		ON CHANGE stock_num
-			IF (NOT get_stock_info(curr_pa,
-														arr_items[curr_pa].stock_num) ) THEN
-					LET arr_items[curr_pa].stock_num = NULL
-					ERROR msg07
-					NEXT FIELD stock_num
+			IF (NOT get_stock_info(curr_pa, arr_items[curr_pa].stock_num)) THEN
+				LET arr_items[curr_pa].stock_num = NULL
+				ERROR msg07
+				NEXT FIELD stock_num
 			END IF
 
 		ON CHANGE quantity
 			IF (arr_items[curr_pa].quantity <= 0) THEN
-					ERROR msg13
-					NEXT FIELD quantity
+				ERROR msg13
+				NEXT FIELD quantity
 			END IF
 
-	END INPUT			
+	END INPUT
 
 	LET item_cnt = arr_items.getLength()
 	CALL order_total()
@@ -400,15 +369,15 @@ FUNCTION items_line_total(curr_pa SMALLINT)
 END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION order_total()
-	DEFINE order_total DECIMAL(9,2)
-	DEFINE i SMALLINT
+	DEFINE order_total DECIMAL(9, 2)
+	DEFINE i           SMALLINT
 
-	LET order_total = 0	
+	LET order_total = 0
 	FOR i = 1 TO arr_items.getLength()
-		IF arr_items[i].line_total IS NOT NULL THEN		
+		IF arr_items[i].line_total IS NOT NULL THEN
 			LET order_total = order_total + arr_items[i].line_total
 		END IF
-	END FOR 
+	END FOR
 	DISPLAY BY NAME order_total
 
 END FUNCTION
@@ -416,23 +385,23 @@ END FUNCTION
 FUNCTION get_stock_info(curr_pa SMALLINT, id INT)
 	DEFINE sqltext STRING
 
-	IF id IS NULL THEN RETURN FALSE END IF
-
-	LET sqltext="SELECT description, unit,"
-	IF order_rec.promo = "N" THEN 
-		LET sqltext=sqltext || "reg_price"
-	ELSE
-		LET sqltext=sqltext || "promo_price"
+	IF id IS NULL THEN
+		RETURN FALSE
 	END IF
-	LET sqltext=sqltext || " FROM stock WHERE stock_num = ? AND fac_code = ?"
+
+	LET sqltext = "SELECT description, unit,"
+	IF order_rec.promo = "N" THEN
+		LET sqltext = sqltext || "reg_price"
+	ELSE
+		LET sqltext = sqltext || "promo_price"
+	END IF
+	LET sqltext = sqltext || " FROM stock WHERE stock_num = ? AND fac_code = ?"
 
 	TRY
 		PREPARE get_stock_cursor FROM sqltext
 		EXECUTE get_stock_cursor
-					INTO arr_items[curr_pa].description,
-							arr_items[curr_pa].unit, 
-							arr_items[curr_pa].price
-					USING id, order_rec.fac_code
+				INTO arr_items[curr_pa].description, arr_items[curr_pa].unit, arr_items[curr_pa].price USING id,
+						order_rec.fac_code
 	CATCH
 		ERROR SQLERRMESSAGE
 	END TRY
@@ -441,32 +410,21 @@ FUNCTION get_stock_info(curr_pa SMALLINT, id INT)
 
 END FUNCTION
 --------------------------------------------------------------------------------
-FUNCTION item_insert(curr_pa SMALLINT) 
+FUNCTION item_insert(curr_pa SMALLINT)
 	TRY
-		INSERT INTO items (
-			order_num,
-			stock_num, 
-			quantity, 
-			price
-		) VALUES ( 
-			order_rec.order_num, 
-			arr_items[curr_pa].stock_num,
-			arr_items[curr_pa].quantity,
-			arr_items[curr_pa].price
-		)
+		INSERT INTO items(order_num, stock_num, quantity, price)
+				VALUES(order_rec.order_num, arr_items[curr_pa].stock_num, arr_items[curr_pa].quantity, arr_items[curr_pa].price)
 		MESSAGE msg08
 	CATCH
 		ERROR SQLERRMESSAGE
 	END TRY
-END FUNCTION 
+END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION item_update(curr_pa SMALLINT)
 	TRY
-		UPDATE items SET (stock_num,quantity) =
-			(arr_items[curr_pa].stock_num,arr_items[curr_pa].quantity)
-			WHERE items.stock_num = arr_items[curr_pa].stock_num
-				AND items.order_num = order_rec.order_num
-			MESSAGE msg09
+		UPDATE items SET (stock_num, quantity) = (arr_items[curr_pa].stock_num, arr_items[curr_pa].quantity)
+				WHERE items.stock_num = arr_items[curr_pa].stock_num AND items.order_num = order_rec.order_num
+		MESSAGE msg09
 	CATCH
 		ERROR SQLERRMESSAGE
 	END TRY
@@ -474,9 +432,7 @@ END FUNCTION
 --------------------------------------------------------------------------------
 FUNCTION item_delete(curr_pa SMALLINT)
 	TRY
-		DELETE FROM items 
-			WHERE items.stock_num = arr_items[curr_pa].stock_num
-			AND items.order_num = order_rec.order_num
+		DELETE FROM items WHERE items.stock_num = arr_items[curr_pa].stock_num AND items.order_num = order_rec.order_num
 		MESSAGE msg10
 	CATCH
 		ERROR SQLERRMESSAGE

@@ -7,6 +7,7 @@
 *.4pwcfg
 
 # Genero Studio generated database management files
+*.4pdb
 *_dbx*.*
 
 # Presuming all pdf files are generated from document source

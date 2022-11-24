@@ -1,28 +1,27 @@
-
 IMPORT FGL lib_rptGre
 IMPORT FGL lib
 
 &include "schema.inc"
 
 MAIN
-	DEFINE l_stk RECORD LIKE stock.*
+	DEFINE l_stk    RECORD LIKE stock.*
 	DEFINE l_stkcat RECORD LIKE stock_cat.*
 
 	CALL db_connect()
 	CALL lib_rptGre.init_report(130)
 
-	DECLARE cur CURSOR FOR SELECT * FROM stock,stock_cat WHERE stock.stock_cat = stock_cat.stock_cat
-		ORDER BY stock.stock_cat, stock.description
+	DECLARE cur CURSOR FOR
+			SELECT * FROM stock, stock_cat WHERE stock.stock_cat = stock_cat.stock_cat
+					ORDER BY stock.stock_cat, stock.description
 	FOREACH cur INTO l_stk.*, l_stkcat.*
 		IF lib_rptGre.m_rows = 0 THEN
 			LET lib_rptGre.m_rptStarted = TRUE
 
 			CALL lib_rptGre.set_dest(ARG_VAL(1))
-
 			START REPORT report_gre TO XML HANDLER lib_rptGre.m_gre
 		END IF
 		LET lib_rptGre.m_rows = lib_rptGre.m_rows + 1
-		OUTPUT TO REPORT report_gre( l_stk.*, l_stkcat.* )
+		OUTPUT TO REPORT report_gre(l_stk.*, l_stkcat.*)
 	END FOREACH
 	IF lib_rptGre.m_rptStarted THEN
 		FINISH REPORT report_gre
@@ -32,12 +31,12 @@ MAIN
 
 END MAIN
 --------------------------------------------------------------------------------
-REPORT report_gre( l_stk, l_stkcat )
-	DEFINE l_stk RECORD LIKE stock.*
-	DEFINE l_stkcat RECORD LIKE stock_cat.*
-	DEFINE l_head, l_desc STRING
-	DEFINE l_row,l_groupCount INTEGER
-	DEFINE l_date DATE
+REPORT report_gre(l_stk, l_stkcat)
+	DEFINE l_stk               RECORD LIKE stock.*
+	DEFINE l_stkcat            RECORD LIKE stock_cat.*
+	DEFINE l_head, l_desc      STRING
+	DEFINE l_row, l_groupCount INTEGER
+	DEFINE l_date              DATE
 
 	ORDER EXTERNAL BY l_stk.stock_cat
 

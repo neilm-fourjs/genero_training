@@ -1,18 +1,18 @@
-
 IMPORT FGL lib_rpt
 IMPORT FGL lib
 
 &include "schema.inc"
 
 MAIN
-	DEFINE l_stk RECORD LIKE stock.*
+	DEFINE l_stk    RECORD LIKE stock.*
 	DEFINE l_stkcat RECORD LIKE stock_cat.*
 
 	CALL db_connect()
 	CALL lib_rpt.init_report(80)
 
-	DECLARE cur CURSOR FOR SELECT * FROM stock,stock_cat WHERE stock.stock_cat = stock_cat.stock_cat
-		ORDER BY stock.stock_cat, stock.description
+	DECLARE cur CURSOR FOR
+			SELECT * FROM stock, stock_cat WHERE stock.stock_cat = stock_cat.stock_cat
+					ORDER BY stock.stock_cat, stock.description
 	FOREACH cur INTO l_stk.*, l_stkcat.*
 		IF lib_rpt.m_rows = 0 THEN
 			LET lib_rpt.m_rptStarted = TRUE
@@ -27,7 +27,7 @@ MAIN
 			END CASE
 		END IF
 		LET lib_rpt.m_rows = lib_rpt.m_rows + 1
-		OUTPUT TO REPORT report1( l_stk.*, l_stkcat.* )
+		OUTPUT TO REPORT report1(l_stk.*, l_stkcat.*)
 	END FOREACH
 	IF lib_rpt.m_rptStarted THEN
 		FINISH REPORT report1
@@ -36,8 +36,8 @@ MAIN
 
 END MAIN
 --------------------------------------------------------------------------------
-REPORT report1( l_stk, l_stkcat )
-	DEFINE l_stk RECORD LIKE stock.*
+REPORT report1(l_stk, l_stkcat)
+	DEFINE l_stk    RECORD LIKE stock.*
 	DEFINE l_stkcat RECORD LIKE stock_cat.*
 
 	OUTPUT
@@ -56,17 +56,17 @@ REPORT report1( l_stk, l_stkcat )
 
 		BEFORE GROUP OF l_stk.stock_cat
 			SKIP TO TOP OF PAGE
-			PRINT "Category:",l_stkcat.description
+			PRINT "Category:", l_stkcat.description
 			PRINT
 			PRINT "Stk Code", COLUMN 20, "Description"
 			PRINT lib_rpt.hyphens()
 
 		AFTER GROUP OF l_stk.stock_cat
 			PRINT
-			PRINT GROUP COUNT(*), " Items in '"||(l_stkcat.description CLIPPED)||"' category."
+			PRINT GROUP COUNT(*), " Items in '" || (l_stkcat.description CLIPPED) || "' category."
 
 		ON EVERY ROW
-			PRINT l_stk.stock_num, COLUMN 20,l_stk.description
+			PRINT l_stk.stock_num, COLUMN 20, l_stk.description
 
 		ON LAST ROW
 			PRINT

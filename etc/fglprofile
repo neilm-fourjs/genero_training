@@ -10,4 +10,4 @@ dbi.database.custdemo.source = "../db/custdemo.db"
 #fglrun.localization.file.1.name = "nl"
 #fglrun.localization.file.2.name = "nl_actions"
 
-gui.rendering = "universal"
+#gui.rendering = "universal"

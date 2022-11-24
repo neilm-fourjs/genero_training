@@ -7,7 +7,7 @@ FUNCTION db_connect()
 	TRY
 		CONNECT TO l_db
 	CATCH
-		CALL fgl_winMessage("Error","Failed to connect to database '"||l_db||"'\n"||SQLERRMESSAGE,"exclamation")
+		CALL fgl_winMessage("Error", "Failed to connect to database '" || l_db || "'\n" || SQLERRMESSAGE, "exclamation")
 		EXIT PROGRAM
 	END TRY
 

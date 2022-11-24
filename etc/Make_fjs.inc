@@ -158,6 +158,7 @@ clean:
 	find . -name \*.4go -exec rm {} \; ;\
 	find . -name \*.4gi -exec rm {} \; ;\
 	find . -name \*.4ge -exec rm {} \; ;\
+	find . -name \*.4pdb -exec rm {} \; ;\
 	rm -f *.class ;\
 	$(cleanextra)
 
